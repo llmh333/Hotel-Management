@@ -1,0 +1,34 @@
+
+.btn-choice {
+    -fx-text-fill: #2c3e50;
+    -fx-background-color:  #E8E8E8;
+    -fx-background-radius: 20;
+
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+
+    -fx-pref-width: 115;
+
+
+}
+
+.btn-choice:hover {
+    -fx-background-color: #d6d4d4;
+}
+
+.btn-choice:selected {
+    -fx-background-color: #FFFFFF;
+}
+
+.btn {
+    -fx-background-color:  #1f771c;
+    -fx-background-radius: 10;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+.btn:pressed {
+    -fx-background-color: #20561d;
+    -fx-scale-y: 0.98;
+    -fx-scale-x: 0.98;
+}

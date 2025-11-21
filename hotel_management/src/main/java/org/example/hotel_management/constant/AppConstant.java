@@ -6,4 +6,10 @@ import org.example.hotel_management.util.LoadIconUtil;
 public class AppConstant {
 
     public static final Image APP_ICON = LoadIconUtil.loadIcon("/org/example/hotel_management/icon/hotel_icon.png");
+
+    public static class View {
+        public static final String loginCardPath = "/org/example/hotel_management/fxml/loginCard.fxml";
+        public static final String registerCardPath = "/org/example/hotel_management/fxml/registerCard.fxml";
+        public static final String forgotCardPath = "/org/example/hotel_management/fxml/forgotCard.fxml";
+    }
 }
