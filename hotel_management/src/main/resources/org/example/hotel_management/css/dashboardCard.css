@@ -1,0 +1,44 @@
+.root {
+    --fxbackground-color: #FFFFFF;
+}
+
+.card-dashboard-overview {
+    -fx-background-radius: 20;
+
+    -fx-border-radius: 20;
+    -fx-border-width: 3;
+
+    -fx-pref-width: 300;
+    -fx-pref-height: 150;
+
+    -fx-padding: 30 0 0 0;
+
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+}
+
+#card-total-booking {
+    -fx-border-color: #4BB635;
+    -fx-background-color: #E7F0E5;
+
+
+}
+
+#card-available-rooms {
+    -fx-border-color: #7CB8E4;
+    -fx-background-color: #E8EEF3;
+}
+
+#card-monthly-revenue {
+    -fx-border-color: #F7B56F;
+    -fx-background-color: #FBF2E9;
+}
+
+.card-title {
+    -fx-font-size: 20;
+}
+
+.card-text-value {
+    -fx-font-size: 30;
+}

@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import org.example.hotel_management.constant.AppConstant;
 
 public class AuthDashboardController {
 
@@ -28,7 +29,7 @@ public class AuthDashboardController {
     public void initialize(){
 
         btnCardLogin.setSelected(true);
-        showCard("/org/example/hotel_management/fxml/loginCard.fxml");
+        showCard(AppConstant.View.loginCardPath);
 
         if (btnCardLogin.getToggleGroup() != null) {
             btnCardLogin.getToggleGroup().selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
@@ -40,19 +41,19 @@ public class AuthDashboardController {
 
         btnCardLogin.setOnAction(event -> {
             if (btnCardLogin.isSelected()) {
-                showCard("/org/example/hotel_management/fxml/loginCard.fxml");
+                showCard(AppConstant.View.loginCardPath);
             }
         });
 
         btnCardRegister.setOnAction(event -> {
             if (btnCardRegister.isSelected()) {
-                showCard("/org/example/hotel_management/fxml/registerCard.fxml");
+                showCard(AppConstant.View.registerCardPath);
             }
         });
 
         btnCardForgot.setOnAction(event -> {
             if  (btnCardForgot.isSelected()) {
-                showCard("/org/example/hotel_management/fxml/forgotCard.fxml");
+                showCard(AppConstant.View.forgotCardPath);
 
             }
         });
