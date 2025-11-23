@@ -12,6 +12,7 @@ module org.example.hotel_management {
 
     opens org.example.hotel_management to javafx.fxml;
     opens org.example.hotel_management.controller to javafx.fxml;
+    opens org.example.hotel_management.controller.card to javafx.fxml;
 
     exports org.example.hotel_management;
 }

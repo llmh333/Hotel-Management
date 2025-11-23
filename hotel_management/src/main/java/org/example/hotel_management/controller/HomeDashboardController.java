@@ -61,6 +61,12 @@ public class HomeDashboardController {
             }
         });
 
+        btnRooms.setOnAction(event -> {
+            if (btnRooms.isSelected()) {
+                showCard(AppConstant.View.roomsCardPath);
+            }
+        });
+
     }
 
     public void showCard(String path) {
