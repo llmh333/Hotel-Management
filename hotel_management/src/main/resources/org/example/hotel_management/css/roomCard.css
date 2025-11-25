@@ -1,0 +1,26 @@
+.search-box {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 30;
+    -fx-padding: 5 15 5 15;
+}
+
+
+.search-box:hover {
+    -fx-border-color: #1f771c;
+}
+
+.transparent-field {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+    -fx-prompt-text-fill: #95a5a6;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+}
+
+
+.transparent-field:focused {
+    -fx-background-color: transparent;
+}
