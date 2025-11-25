@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.example.hotel_management.constant.AppConstant;
-import org.example.hotel_management.controller.AuthDashboardController;
+import org.example.hotel_management.util.DatabaseMigrationUtil;
 import org.example.hotel_management.util.HibernateUtil;
 import org.example.hotel_management.util.LoadIconUtil;
 
@@ -21,6 +21,8 @@ public class Main extends Application {
         try {
             EntityManager entityManager = HibernateUtil.getEntityManager();
             entityManager.close();
+
+            DatabaseMigrationUtil.migrate();
 
         } catch (Exception e) {
             e.printStackTrace();
