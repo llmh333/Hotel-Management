@@ -30,6 +30,7 @@ public class HibernateUtil {
             String url = "jdbc:" + type + "://" + host + ":" + port + "/" + database + "?createDatabaseIfNotExist=true";
 
             Map<String, String> properties = new HashMap<>();
+            properties.put("hibernate.physical_naming_strategy", "org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy");
             properties.put("jakarta.persistence.jdbc.url", url);
             properties.put("jakarta.persistence.jdbc.user", username);
             properties.put("jakarta.persistence.jdbc.password", password);
@@ -37,6 +38,7 @@ public class HibernateUtil {
 
              return Persistence.createEntityManagerFactory("hotel-unit", properties);
         } catch (Exception e) {
+            e.printStackTrace();
             logger.log(Level.SEVERE, "Khởi tạo Hibernate thất bại");
         }
         return null;
