@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hotel_management.controller.LoginCardController">
    <children>
       <VBox prefHeight="75.0" spacing="5.0">
          <children>
@@ -18,7 +17,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField prefHeight="35.0" style="-fx-background-radius: 10;">
+            <TextField fx:id="fieldUsername" prefHeight="35.0" promptText="username" style="-fx-background-radius: 10;">
                <font>
                   <Font size="16.0" />
                </font>
@@ -32,19 +31,19 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <PasswordField prefHeight="35.0" style="-fx-background-radius: 10;">
+            <PasswordField fx:id="fieldPassword" prefHeight="35.0" promptText="password" style="-fx-background-radius: 10;">
                <font>
                   <Font size="16.0" />
                </font>
             </PasswordField>
-            <CheckBox alignment="CENTER" mnemonicParsing="false" text="Remember me">
+            <CheckBox fx:id="boxRememberMe" alignment="CENTER" mnemonicParsing="false" text="Remember me">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
          </children>
       </VBox>
-      <Button fx:id="btnSignin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="35.0" styleClass="btn" stylesheets="@../../css/authDashboard.css" text="Sign In" textFill="WHITE">
+      <Button fx:id="btnSignIn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="35.0" styleClass="btn" stylesheets="@../../css/authDashboard.css" text="Sign In" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

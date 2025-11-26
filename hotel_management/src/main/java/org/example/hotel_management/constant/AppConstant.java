@@ -29,5 +29,8 @@ public class AppConstant {
         public static final String roomsCardPath = "/org/example/hotel_management/fxml/card/roomsCard.fxml";
 
         public static final String itemRoomsPath = "/org/example/hotel_management/fxml/itemRoom.fxml";
+
+        public static final String authDashboard =  "/org/example/hotel_management/fxml/authDashboard.fxml";
+        public static final String homeDashboard = "/org/example/hotel_management/fxml/homeDashboard.fxml";
     }
 }

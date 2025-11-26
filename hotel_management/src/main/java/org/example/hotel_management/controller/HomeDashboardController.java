@@ -4,11 +4,13 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.example.hotel_management.constant.AppConstant;
+import org.example.hotel_management.dto.UserResponseDTO;
 import org.example.hotel_management.util.AnimationUtil;
 
 import java.util.HashMap;
@@ -33,6 +35,9 @@ public class HomeDashboardController {
 
     @FXML
     private ToggleButton btnSetting;
+
+    @FXML
+    private Label lblUsername;
 
     @FXML
     private StackPane contentArea;
@@ -99,6 +104,13 @@ public class HomeDashboardController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void setUserInfo(UserResponseDTO user) {
+        lblUsername.setText(user.getUsername());
+        if (user.getRole().equals("ADMIN")) {
+        } else {
         }
     }
 
