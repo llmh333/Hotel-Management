@@ -1,0 +1,27 @@
+/* Làm Alert trông phẳng (Flat design) */
+.dialog-pane {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #1f771c; /* Viền xanh chủ đạo */
+    -fx-border-width: 2px;
+}
+
+/* Bỏ thanh tiêu đề mặc định của Window */
+.dialog-pane .header-panel {
+    -fx-background-color: #1f771c; /* Nền header xanh */
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: white; /* Chữ header trắng */
+    -fx-font-weight: bold;
+}
+
+/* Chỉnh nút OK */
+.dialog-pane .button-bar .button {
+    -fx-background-color: #1f771c;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+.dialog-pane .button-bar .button:hover {
+    -fx-background-color: #268e22;
+}

@@ -38,7 +38,7 @@ public class Main extends Application {
             alert.showAndWait();
             System.exit(1);
         }
-        FXMLLoader authDashboardLoader = new FXMLLoader(getClass().getResource("/org/example/hotel_management/fxml/homeDashboard.fxml"));
+        FXMLLoader authDashboardLoader = new FXMLLoader(getClass().getResource("/org/example/hotel_management/fxml/authDashboard.fxml"));
         Parent root = authDashboardLoader.load();
         Scene scene = new Scene(root);
 
