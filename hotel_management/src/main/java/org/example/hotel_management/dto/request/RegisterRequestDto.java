@@ -1,4 +1,4 @@
-package org.example.hotel_management.dto;
+package org.example.hotel_management.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;

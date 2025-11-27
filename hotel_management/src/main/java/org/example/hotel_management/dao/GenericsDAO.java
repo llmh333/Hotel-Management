@@ -10,7 +10,6 @@ import java.util.Optional;
 
 public class GenericsDAO<T, ID> {
 
-    private static EntityManager entityManager = HibernateUtil.getEntityManager();
     private final Class<T> entityClass;
 
     public GenericsDAO(Class<T> entityClass) {
@@ -18,7 +17,7 @@ public class GenericsDAO<T, ID> {
     }
 
     public <T> Optional<T> add(T entity) {
-
+        EntityManager entityManager = HibernateUtil.getEntityManager();
         EntityTransaction transactional = entityManager.getTransaction();
         try {
             transactional.begin();
@@ -31,10 +30,13 @@ public class GenericsDAO<T, ID> {
                 transactional.rollback();
             }
             return Optional.empty();
+        } finally {
+            entityManager.close();
         }
     }
 
     public <T> Optional<T> update(T entity) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
         EntityTransaction transactional = entityManager.getTransaction();
         try {
             transactional.begin();
@@ -47,10 +49,13 @@ public class GenericsDAO<T, ID> {
                 transactional.rollback();
             }
             return Optional.empty();
+        } finally {
+            entityManager.close();
         }
     }
 
     public boolean delete(T entity) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
         EntityTransaction transactional = entityManager.getTransaction();
         try {
             transactional.begin();
@@ -63,10 +68,13 @@ public class GenericsDAO<T, ID> {
                 transactional.rollback();
             }
             return false;
+        } finally {
+            entityManager.close();
         }
     }
 
     public Optional<T> findById(Object id) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
         try {
             T entity = entityManager.find(entityClass, id);
             return Optional.ofNullable(entity);
@@ -76,6 +84,7 @@ public class GenericsDAO<T, ID> {
     }
 
     public List<T> findAll() {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
         String sql = "SELECT * FROM " +  entityClass.getSimpleName();
         try {
             TypedQuery<T> query = entityManager.createQuery(sql, entityClass);

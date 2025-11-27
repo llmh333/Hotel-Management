@@ -1,7 +1,7 @@
 package org.example.hotel_management.mapper;
 
-import org.example.hotel_management.dto.RegisterRequestDto;
-import org.example.hotel_management.dto.UserResponseDTO;
+import org.example.hotel_management.dto.request.RegisterRequestDto;
+import org.example.hotel_management.dto.response.UserResponseDTO;
 import org.example.hotel_management.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

@@ -44,7 +44,7 @@ public class HibernateUtil {
         return null;
     }
 
-    public static EntityManager getEntityManager() {
+    public static synchronized EntityManager getEntityManager() {
         if (entityManagerFactory == null || !entityManagerFactory.isOpen()) {
             entityManagerFactory = buildEntityManagerFactory();
         }

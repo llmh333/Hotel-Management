@@ -1,4 +1,4 @@
-package org.example.hotel_management.dto;
+package org.example.hotel_management.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;

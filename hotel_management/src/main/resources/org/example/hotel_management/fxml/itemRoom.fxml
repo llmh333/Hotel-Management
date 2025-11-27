@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane id="item-card" prefHeight="220.0" prefWidth="220.0" stylesheets="@../css/itemRoom.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hotel_management.controller.ItemRoomController">
+<AnchorPane id="item-card" prefHeight="220.0" prefWidth="260.0" stylesheets="@../css/itemRoom.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hotel_management.controller.ItemRoomController">
    <children>
       <Button id="btn-book-room" fx:id="btnBookRoom" layoutX="99.0" layoutY="205.0" mnemonicParsing="false" prefHeight="30.0" text="Book Room" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
       <Button layoutX="208.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -29,14 +29,14 @@
                <children>
                   <FontIcon />
                   <FontIcon iconLiteral="fas-bed" iconSize="40" />
-                  <Label styleClass="text-info-room" text="Label" textFill="#2c3e50" />
+                  <Label styleClass="text-info-room" text="Room" textFill="#2c3e50" />
                   <Label id="value-number-room" fx:id="fieldRoomNumber" styleClass="value-info-room" text="Label" textFill="#2c3e50" />
                </children>
             </HBox>
             <GridPane prefHeight="82.0" prefWidth="230.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="91.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="107.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -49,7 +49,7 @@
                   <Label styleClass="text-info-room" text="Status" textFill="#2c3e50" GridPane.rowIndex="2" />
                   <Label id="value-room-type" fx:id="fieldRoomType" prefHeight="17.0" prefWidth="84.0" styleClass="value-info-room" text="Label" textFill="#2c3e50" GridPane.columnIndex="1" />
                   <Label id="value-price" fx:id="fieldPrice" prefHeight="17.0" prefWidth="92.0" styleClass="value-info-room" text="Label" textFill="#2c3e50" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label id="value-status" fx:id="fieldLable" prefHeight="17.0" prefWidth="113.0" styleClass="value-info-room" text="Label" textFill="#2c3e50" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label id="value-status" fx:id="fieldStatus" prefHeight="17.0" prefWidth="113.0" styleClass="value-info-room" text="Label" textFill="#2c3e50" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>

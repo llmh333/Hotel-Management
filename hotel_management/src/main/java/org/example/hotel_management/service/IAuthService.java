@@ -1,11 +1,11 @@
 package org.example.hotel_management.service;
 
-import org.example.hotel_management.dto.LoginRequestDto;
-import org.example.hotel_management.dto.RegisterRequestDto;
-import org.example.hotel_management.dto.UserResponseDTO;
+import org.example.hotel_management.dto.request.LoginRequestDto;
+import org.example.hotel_management.dto.request.RegisterRequestDto;
+import org.example.hotel_management.dto.response.UserResponseDTO;
 
 public interface IAuthService {
 
-    public UserResponseDTO login(LoginRequestDto loginRequestDto);
-    public UserResponseDTO register(RegisterRequestDto registerRequestDto);
+    UserResponseDTO login(LoginRequestDto loginRequestDto);
+    UserResponseDTO register(RegisterRequestDto registerRequestDto);
 }
