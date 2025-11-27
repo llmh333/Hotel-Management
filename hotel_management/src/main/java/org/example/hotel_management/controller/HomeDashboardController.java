@@ -6,11 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.example.hotel_management.constant.AppConstant;
-import org.example.hotel_management.dto.UserResponseDTO;
+import org.example.hotel_management.dto.response.UserResponseDTO;
+import org.example.hotel_management.enums.Role;
 import org.example.hotel_management.util.AnimationUtil;
 
 import java.util.HashMap;
@@ -109,7 +109,7 @@ public class HomeDashboardController {
 
     public void setUserInfo(UserResponseDTO user) {
         lblUsername.setText(user.getUsername());
-        if (user.getRole().equals("ADMIN")) {
+        if (Role.ADMIN.equals(user.getRole())) {
         } else {
         }
     }

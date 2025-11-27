@@ -1,21 +1,17 @@
 package org.example.hotel_management.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
-import org.example.hotel_management.constant.AppConstant;
-import org.example.hotel_management.dto.RegisterRequestDto;
-import org.example.hotel_management.dto.UserResponseDTO;
+import org.example.hotel_management.dto.request.RegisterRequestDto;
+import org.example.hotel_management.dto.response.UserResponseDTO;
 import org.example.hotel_management.service.IAuthService;
 import org.example.hotel_management.service.impl.IAuthServiceImpl;
 import org.example.hotel_management.util.ValidatorUtil;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 public class RegisterCardController {

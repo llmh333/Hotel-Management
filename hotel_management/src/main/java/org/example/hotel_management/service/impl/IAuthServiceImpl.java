@@ -1,9 +1,9 @@
 package org.example.hotel_management.service.impl;
 
 import org.example.hotel_management.dao.UserDAO;
-import org.example.hotel_management.dto.LoginRequestDto;
-import org.example.hotel_management.dto.RegisterRequestDto;
-import org.example.hotel_management.dto.UserResponseDTO;
+import org.example.hotel_management.dto.request.LoginRequestDto;
+import org.example.hotel_management.dto.request.RegisterRequestDto;
+import org.example.hotel_management.dto.response.UserResponseDTO;
 import org.example.hotel_management.entity.User;
 import org.example.hotel_management.enums.Role;
 import org.example.hotel_management.mapper.UserMapper;
