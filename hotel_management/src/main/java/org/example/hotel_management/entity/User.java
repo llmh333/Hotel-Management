@@ -31,6 +31,12 @@ public class User {
     @Column(columnDefinition = "varchar(255)", unique = true, nullable = false)
     private String email;
 
+    @Column(columnDefinition = "varchar(255)")
+    private String fullName;
+
+    @Column(unique = true, nullable = false)
+    private String phoneNumber;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

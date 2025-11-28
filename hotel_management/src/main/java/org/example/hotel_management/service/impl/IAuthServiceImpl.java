@@ -1,5 +1,9 @@
 package org.example.hotel_management.service.impl;
 
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
+import org.example.hotel_management.constant.ErrorMessageConstant;
 import org.example.hotel_management.dao.UserDAO;
 import org.example.hotel_management.dto.request.LoginRequestDto;
 import org.example.hotel_management.dto.request.RegisterRequestDto;
@@ -8,6 +12,7 @@ import org.example.hotel_management.entity.User;
 import org.example.hotel_management.enums.Role;
 import org.example.hotel_management.mapper.UserMapper;
 import org.example.hotel_management.service.IAuthService;
+import org.example.hotel_management.util.AlertUtil;
 import org.example.hotel_management.util.PasswordUtil;
 
 import java.util.Optional;
@@ -36,6 +41,20 @@ public class IAuthServiceImpl implements IAuthService {
     @Override
     public UserResponseDTO register(RegisterRequestDto registerRequestDto) {
         User user = userMapper.toUser(registerRequestDto);
+
+        if (userDAO.existsByUsername(registerRequestDto.getUsername())) {
+            AlertUtil.showAlert(Alert.AlertType.ERROR, "ERROR", ErrorMessageConstant.Auth.USERNAME_ALREADY_EXIST, "Please choose another username");
+            return null;
+        }
+        if (userDAO.existsByEmail(registerRequestDto.getEmail())) {
+            AlertUtil.showAlert(Alert.AlertType.ERROR, "ERROR", ErrorMessageConstant.Auth.EMAIL_ALREADY_EXIST, "Please choose another email");
+            return null;
+        }
+        if (userDAO.existsByPhoneNumber(registerRequestDto.getPhoneNumber())) {
+            AlertUtil.showAlert(Alert.AlertType.ERROR, "ERROR", ErrorMessageConstant.Auth.PHONE_NUMBER_ALREADY_EXIST, "Please choose another phone number");
+            return null;
+        }
+
 
         user.setPassword(PasswordUtil.encode(registerRequestDto.getPassword()));
         user.setRole(Role.STAFF);

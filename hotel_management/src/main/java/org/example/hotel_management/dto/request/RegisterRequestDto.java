@@ -24,5 +24,11 @@ public class RegisterRequestDto {
     @Email(message = ErrorMessageConstant.Auth.INVALID_EMAIL)
     private String email;
 
+    @Pattern(regexp = "^[\\p{L} .'-]+$")
+    private String fullName;
+
+    @Pattern(regexp = "^(0|\\+84)(3[2-9]|5[2689]|7[06789]|8[1-9]|9[0-9])\\d{7}$")
+    private String phoneNumber;
+
     private Role role;
 }

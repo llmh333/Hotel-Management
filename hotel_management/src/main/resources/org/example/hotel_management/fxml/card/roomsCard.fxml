@@ -39,16 +39,16 @@
                   <TextField id="field-search" fx:id="boxSearch" prefHeight="26.0" prefWidth="913.0" promptText="Search rooms" styleClass="transparent-field" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
+            <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="711.0" prefWidth="950.0" style="-fx-background: transparent; -fx-background-color: transparent;">
+               <content>
+                  <FlowPane fx:id="containerRooms" alignment="CENTER" hgap="30.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWrapLength="1000.0" vgap="30.0" />
+               </content>
+            </ScrollPane>
             <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="350.0" style="-fx-region-background: #52B02E;">
                <children>
                   <ProgressIndicator fx:id="loadingOverlay" style="-fx-progress-color: #52B02E;" visible="false" />
                </children>
             </StackPane>
-            <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background: transparent; -fx-background-color: transparent;">
-               <content>
-                  <FlowPane fx:id="containerRooms" alignment="CENTER" hgap="30.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWrapLength="1000.0" vgap="30.0" />
-               </content>
-            </ScrollPane>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
