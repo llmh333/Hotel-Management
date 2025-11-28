@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class Booking {
 
     @Id
@@ -25,6 +26,9 @@ public class Booking {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Room room;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     private LocalDateTime checkIn;
 

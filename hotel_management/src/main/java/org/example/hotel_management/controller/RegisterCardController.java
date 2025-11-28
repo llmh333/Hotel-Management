@@ -2,6 +2,7 @@ package org.example.hotel_management.controller;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
@@ -9,6 +10,7 @@ import org.example.hotel_management.dto.request.RegisterRequestDto;
 import org.example.hotel_management.dto.response.UserResponseDTO;
 import org.example.hotel_management.service.IAuthService;
 import org.example.hotel_management.service.impl.IAuthServiceImpl;
+import org.example.hotel_management.util.AlertUtil;
 import org.example.hotel_management.util.ValidatorUtil;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -26,6 +28,12 @@ public class RegisterCardController {
     private TextField fieldEmail;
 
     @FXML
+    private TextField fieldFullName;
+
+    @FXML
+    private TextField fieldPhoneNumber;
+
+    @FXML
     private Button btnSignup;
 
     private static final IAuthService authService = IAuthServiceImpl.getInstance();
@@ -39,16 +47,20 @@ public class RegisterCardController {
             String username = fieldUsername.getText();
             String password = fieldPassword.getText();
             String email = fieldEmail.getText();
+            String fullName = fieldFullName.getText();
+            String phoneNumber = fieldPhoneNumber.getText();
 
             RegisterRequestDto registerRequestDto = RegisterRequestDto.builder()
                     .username(username)
                     .password(password)
                     .email(email)
+                    .fullName(fullName)
+                    .phoneNumber(phoneNumber)
                     .build();
 
             String errorsValidator = ValidatorUtil.validate(registerRequestDto);
             if (errorsValidator != null){
-                ValidatorUtil.showErrorValidatorAlert("Warning", errorsValidator);
+                AlertUtil.showAlert(Alert.AlertType.ERROR, "ERROR", "Please check the information again", errorsValidator);
             } else {
                 logger.info("Register request has been sent");
 
@@ -66,6 +78,8 @@ public class RegisterCardController {
                     fieldUsername.setText("");
                     fieldPassword.setText("");
                     fieldEmail.setText("");
+                    fieldFullName.setText("");
+                    fieldPhoneNumber.setText("");
                 }
             }
         });

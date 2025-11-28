@@ -20,7 +20,7 @@ public class Invoice {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Employee employee;
+    private User user;
 
     @OneToOne(fetch = FetchType.LAZY)
     private Booking booking;

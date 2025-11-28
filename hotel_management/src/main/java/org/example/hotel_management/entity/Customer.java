@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Customer {
 
     @Id
@@ -21,9 +22,6 @@ public class Customer {
 
     @Column(nullable = false)
     private String fullName;
-
-    @Column(nullable = false, unique = true)
-    private String email;
 
     @Column(nullable = false, unique = true)
     private String phoneNumber;

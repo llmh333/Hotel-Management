@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -14,8 +15,10 @@ import org.controlsfx.control.Notifications;
 import org.example.hotel_management.constant.AppConstant;
 import org.example.hotel_management.dto.request.LoginRequestDto;
 import org.example.hotel_management.dto.response.UserResponseDTO;
+import org.example.hotel_management.entity.UserSessionUtil;
 import org.example.hotel_management.service.IAuthService;
 import org.example.hotel_management.service.impl.IAuthServiceImpl;
+import org.example.hotel_management.util.AlertUtil;
 import org.example.hotel_management.util.ValidatorUtil;
 
 import java.io.IOException;
@@ -45,7 +48,7 @@ public class LoginCardController {
 
             String errors = ValidatorUtil.validate(requestDto);
             if (errors != null) {
-                ValidatorUtil.showErrorValidatorAlert("Warning", errors);
+                AlertUtil.showAlert(Alert.AlertType.ERROR, "Warning", "Please check the information again", errors);
             } else {
 
                 UserResponseDTO userResponseDTO = authService.login(requestDto);
@@ -72,6 +75,8 @@ public class LoginCardController {
                         dashboardStage.setScene(dashboardScene);
 
                         dashboardStage.show();
+
+                        UserSessionUtil.getInstance().setCurrentUser(userResponseDTO);
 
 
                     } catch (IOException e) {
