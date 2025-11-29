@@ -1,0 +1,156 @@
+@import "theme.css";
+
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+    -fx-padding: 0; /* Padding xử lý trong FXML */
+}
+
+/* --- 2. TYPOGRAPHY (Chữ viết) --- */
+.header-title {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f771c; /* Xanh chủ đạo */
+}
+
+.label-gray {
+    -fx-text-fill: #7f8c8d; /* Xám nhạt */
+    -fx-font-size: 12px;
+}
+
+.label-bold {
+    -fx-text-fill: #2c3e50; /* Đen xám */
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.label-price {
+    -fx-text-fill: #1f771c;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.label-total {
+    -fx-text-fill: #e74c3c; /* Màu đỏ cam nhấn mạnh tổng tiền */
+    -fx-font-weight: bold;
+    -fx-font-size: 22px;
+}
+
+/* --- 3. INFO CARD (Thẻ thông tin món) --- */
+.info-card {
+    -fx-background-color: #f1f8e9; /* Nền xanh siêu nhạt */
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-border-color: #c5e1a5;     /* Viền xanh nhạt */
+    -fx-border-radius: 10;
+    -fx-border-width: 1px;
+}
+
+/* --- 4. SEARCHABLE COMBOBOX (Custom Style) --- */
+/* --- SEARCHABLE COMBOBOX (CHUẨN JAVAFX) --- */
+
+/* 1. Hộp bao ngoài */
+.searchable-combo {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 5;
+    -fx-border-width: 1px;
+    -fx-padding: 2 5 2 5;
+}
+
+/* 2. Khi Focus: Chỉ cần dùng :focused là đủ */
+/* BỎ :contains-focus đi vì JavaFX không hỗ trợ */
+.searchable-combo:focused {
+    -fx-background-color: white;
+    -fx-border-color: #1f771c;   /* Viền xanh */
+    -fx-border-width: 1.5 px;
+    -fx-effect: dropshadow(three-pass-box, rgba(31, 119, 28, 0.2), 5, 0, 0, 0);
+}
+
+/* Các phần còn lại giữ nguyên... */
+.searchable-combo .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-prompt-text-fill: #95a5a6;
+    -fx-padding: 0;
+}
+
+/* --- 5. SPINNER (Số lượng) --- */
+.spinner {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.spinner:focused {
+    -fx-border-color: #1f771c;
+    -fx-border-width: 1.5px;
+}
+
+.spinner .text-field {
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER; /* Số nằm giữa */
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: transparent; /* Nút tăng giảm trong suốt */
+    -fx-cursor: hand;
+}
+
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-background-color: #7f8c8d;
+}
+
+.spinner:focused .increment-arrow,
+.spinner:focused .decrement-arrow {
+    -fx-background-color: #1f771c;
+}
+
+.spinner:pressed .increment-arrow,
+.spinner:pressed .decrement-arrow {
+    -fx-background-color: #145a12;
+}
+
+/* --- 6. BUTTONS --- */
+
+/* Nút Hủy (Màu xám) */
+.btn-secondary {
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+    -fx-padding: 8 20;
+}
+.btn-secondary:hover {
+    -fx-background-color: #bdc3c7;
+}
+
+/* Nút Xác nhận (Màu xanh) */
+.btn-primary {
+    -fx-background-color: -color-dark-green;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+    -fx-padding: 8 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(31, 119, 28, 0.3), 8, 0, 0, 2);
+}
+.btn-primary:hover {
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+.btn-primary:pressed {
+    -fx-background-color: #145a12;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: none;
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.SearchableComboBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="dialog-pane" stylesheets="@../css/orderServiceDialog.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+        <VBox prefHeight="407.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <FontIcon iconColor="#1f771c" iconLiteral="fas-cart-plus" iconSize="24" />
+                        <Label styleClass="header-title" text="Order Service" />
+                    </children>
+                </HBox>
+
+                <HBox spacing="15.0" styleClass="info-card">
+                    <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 12;" text="Selected Item:" />
+                                <Label fx:id="lblServiceName" prefHeight="25.0" prefWidth="156.0" styleClass="label-bold" text="Coca Cola" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER_RIGHT">
+                            <children>
+                                <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 12;" text="Price" />
+                                <Label fx:id="lblServicePrice" styleClass="label-price" text="120000" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <VBox spacing="15.0">
+                    <children>
+                        <VBox spacing="8.0">
+                            <children>
+                                <Label style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" text="Select Room (Occupied Only)" />
+
+                                <SearchableComboBox fx:id="searchableRoom" maxWidth="Infinity" styleClass="searchable-combo" />
+
+                                <Label style="-fx-text-fill: #95a5a6; -fx-font-size: 11px; -fx-font-style: italic;" text="* Type room number to search fast (e.g. '101')" />
+                            </children>
+                        </VBox>
+
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                            <children>
+                                <VBox spacing="5.0">
+                                    <Label fx:id="lblQuantity" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" text="Quantity" />
+                                    <Spinner fx:id="spinnerQuantity" editable="true" prefHeight="32.0" prefWidth="100.0" style="-fx-border-color: #dcdcdc; -fx-border-radius: 5;" />
+                                </VBox>
+
+                                <VBox alignment="CENTER_RIGHT" spacing="5.0" HBox.hgrow="ALWAYS">
+                                    <Label style="-fx-text-fill: #7f8c8d;" text="Total Amount" />
+                                    <Label fx:id="lblTotal" styleClass="label-total" text="5000000" />
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <HBox alignment="CENTER_RIGHT" spacing="10.0" style="-fx-padding: 10 0 0 0;">
+                    <Button fx:id="btnCancel" styleClass="btn-secondary" text="Cancel" />
+                    <Button fx:id="btnConfirmOrder" styleClass="btn-primary" text="Confirm Order" />
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
