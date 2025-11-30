@@ -17,6 +17,7 @@ public class DatabaseMigrationUtil {
                         AppConstant.Database.password)
                 .locations("classpath:/org/example/hotel_management/db")
                 .baselineOnMigrate(true)
+                .baselineVersion("0")
                 .load();
 
         logger.info("Running Database Migration...");

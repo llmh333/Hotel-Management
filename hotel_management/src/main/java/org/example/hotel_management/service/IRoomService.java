@@ -2,6 +2,7 @@ package org.example.hotel_management.service;
 
 import org.example.hotel_management.dto.request.RoomRequestDTO;
 import org.example.hotel_management.dto.response.RoomResponseDTO;
+import org.example.hotel_management.entity.Room;
 
 import java.util.List;
 
@@ -11,4 +12,6 @@ public interface IRoomService {
     RoomResponseDTO updateRoom(RoomRequestDTO roomRequestDTO);
     boolean deleteRoomByRoomNumber(Integer id);
     List<RoomResponseDTO> getRoomsPagination(int pageNum, int pageSize);
+
+    List<RoomResponseDTO> getOccupiedRooms();
 }

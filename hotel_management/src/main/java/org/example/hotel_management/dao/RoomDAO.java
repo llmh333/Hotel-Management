@@ -64,4 +64,18 @@ public class RoomDAO extends GenericsDAO<Room, Integer> {
         }
         return false;
     }
+
+    public List<Room> getOccupiedRooms() {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        try {
+            String jsql = "FROM Room u WHERE u.status = 'OCCUPIED' ORDER BY u.roomNumber ASC";
+            TypedQuery<Room> query = entityManager.createQuery(jsql, Room.class);
+
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            entityManager.close();
+        }
+    }
 }

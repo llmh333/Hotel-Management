@@ -3,6 +3,7 @@ package org.example.hotel_management.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
+import org.example.hotel_management.entity.Room;
 import org.example.hotel_management.util.HibernateUtil;
 
 import java.util.List;
@@ -59,7 +60,8 @@ public class GenericsDAO<T, ID> {
         EntityTransaction transactional = entityManager.getTransaction();
         try {
             transactional.begin();
-            entityManager.persist(entity);
+            T managedEntity = entityManager.contains(entity) ? entity : entityManager.merge(entity);
+            entityManager.remove(managedEntity);
             transactional.commit();
 
             return true;
@@ -67,6 +69,7 @@ public class GenericsDAO<T, ID> {
             if  (transactional != null && transactional.isActive()) {
                 transactional.rollback();
             }
+            e.printStackTrace();
             return false;
         } finally {
             entityManager.close();
@@ -80,6 +83,8 @@ public class GenericsDAO<T, ID> {
             return Optional.ofNullable(entity);
         } catch (Exception e) {
             return Optional.empty();
+        } finally {
+            entityManager.close();
         }
     }
 
@@ -91,6 +96,33 @@ public class GenericsDAO<T, ID> {
             return query.getResultList();
         } catch (Exception e) {
             throw e;
+        }
+    }
+
+    public List<T> getPagination(int page, int size) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        try {
+
+            TypedQuery<T> query = (TypedQuery<T>) entityManager.createQuery("FROM " + entityClass.getSimpleName());
+            query.setFirstResult((page - 1) * size);
+            query.setMaxResults(size);
+
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public long count() {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        String sql = "SELECT COUNT(*) FROM " + entityClass.getSimpleName();
+        try {
+            TypedQuery<Long> query = entityManager.createQuery(sql, Long.class);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

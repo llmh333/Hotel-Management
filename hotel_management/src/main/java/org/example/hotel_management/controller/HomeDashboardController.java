@@ -72,6 +72,11 @@ public class HomeDashboardController {
             }
         });
 
+        btnServices.setOnAction(event -> {
+            if (btnServices.isSelected())
+                showCard(AppConstant.View.servicesCardPath);
+        });
+
     }
 
     public void showCard(String path) {

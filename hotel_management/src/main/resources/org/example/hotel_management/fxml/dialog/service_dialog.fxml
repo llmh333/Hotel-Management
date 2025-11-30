@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hotel_management.controller.dialog.ServiceDialogController">
+    <children>
+        <VBox spacing="25.0" stylesheets="@../../css/orderServiceDialog.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+            <children>
+
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <FontIcon fx:id="headerIcon" iconColor="#1f771c" iconLiteral="fas-plus-circle" iconSize="24" />
+                        <Label fx:id="lblHeaderTitle" styleClass="header-title" text="New Service" />
+                    </children>
+                </HBox>
+
+                <VBox spacing="20.0">
+                    <children>
+                        <VBox spacing="8.0">
+                            <Label styleClass="label-bold" text="Service Name" />
+                            <TextField fx:id="txtName" promptText="e.g., Coca Cola, Laundry kg..." styleClass="input-field" />
+                        </VBox>
+
+                        <HBox spacing="20.0">
+                            <children>
+                                <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                    <Label styleClass="label-bold" text="Price ($)" />
+                                    <TextField fx:id="txtPrice" promptText="0.00" styleClass="input-field" />
+                                </VBox>
+
+                                <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                    <Label styleClass="label-bold" text="Quantity " />
+                                    <Spinner fx:id="spinnerQuantity" editable="true" maxWidth="Infinity" prefHeight="37.0" prefWidth="168.0" styleClass="spinner" />
+                                </VBox>
+                            </children>
+                        </HBox>
+                  <VBox spacing="8.0">
+                     <children>
+                        <Label styleClass="label-bold" text="Category" />
+                        <TextField fx:id="txtCategory" promptText="Category name" styleClass="input-field" />
+                     </children>
+                  </VBox>
+                    </children>
+                </VBox>
+
+                <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-padding: 10 0 0 0;">
+                    <Button fx:id="btnCancel" styleClass="btn-secondary" text="Cancel" />
+                    <Button fx:id="btnSave" styleClass="btn-primary" text="Save Service">
+                        <graphic>
+                            <FontIcon iconColor="white" iconLiteral="fas-save" />
+                        </graphic>
+                    </Button>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

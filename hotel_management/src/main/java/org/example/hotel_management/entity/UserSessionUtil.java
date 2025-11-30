@@ -31,4 +31,8 @@ public class UserSessionUtil {
     public boolean isLoggedIn() {
         return currentUser != null;
     }
+
+    public boolean isAdmin() {
+        return currentUser.getRole().equals("ADMIN");
+    }
 }

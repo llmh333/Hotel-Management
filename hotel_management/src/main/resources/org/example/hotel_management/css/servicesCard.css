@@ -125,3 +125,59 @@
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }
+
+.btn-icon {
+    -fx-background-radius: 5;      /* Bo góc nhẹ */
+    -fx-cursor: hand;
+    -fx-padding: 6 10;             /* Kích thước nhỏ gọn vừa ô bảng */
+    -fx-alignment: CENTER;
+    -fx-content-display: GRAPHIC_ONLY; /* Chỉ hiện icon, ẩn text (nếu có) */
+    -fx-min-width: 25px;           /* Đảm bảo nút vuông vắn hoặc đều nhau */
+    -fx-min-height: 25px;
+}
+
+/* Hiệu ứng khi bấm xuống (Lún nhẹ) cho tất cả các nút */
+.btn-icon:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-insets: 1;
+}
+
+/* Ép màu Icon bên trong thành màu Trắng */
+.btn-icon .ikonli-font-icon {
+    -fx-icon-color: white;
+    -fx-fill: white;
+}
+
+/* --- 1. ORDER BUTTON (PRIMARY - BLUE) --- */
+/* Màu xanh dương: Thể hiện hành động chính, tích cực, thêm mới */
+.btn-action-primary {
+    -fx-background-color: #3498db;
+}
+
+.btn-action-primary:hover {
+    -fx-background-color: #2980b9; /* Xanh đậm hơn */
+    -fx-effect: dropshadow(three-pass-box, rgba(52, 152, 219, 0.4), 8, 0, 0, 2);
+}
+
+/* --- 2. EDIT BUTTON (WARNING - ORANGE) --- */
+/* Màu cam/vàng: Thể hiện sự cảnh báo, sửa đổi, chú ý */
+.btn-action-warning {
+    -fx-background-color: #f39c12;
+}
+
+.btn-action-warning:hover {
+    -fx-background-color: #d35400; /* Cam cháy */
+    -fx-effect: dropshadow(three-pass-box, rgba(243, 156, 18, 0.4), 8, 0, 0, 2);
+}
+
+/* --- 3. DELETE BUTTON (DANGER - RED) --- */
+/* Màu đỏ: Thể hiện sự nguy hiểm, xóa bỏ, không thể hoàn tác */
+.btn-action-danger {
+    -fx-background-color: #e74c3c;
+}
+
+.btn-action-danger:hover {
+    -fx-background-color: #c0392b; /* Đỏ bầm */
+    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.4), 8, 0, 0, 2);
+}
