@@ -42,4 +42,10 @@ public class IRoomServiceImpl implements IRoomService {
 
         return rooms.stream().map(roomMapper::toRoomResponseDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<RoomResponseDTO> getOccupiedRooms() {
+        List<Room> rooms = roomDAO.getOccupiedRooms();
+        return rooms.isEmpty() ? List.of() : rooms.stream().map(roomMapper::toRoomResponseDTO).collect(Collectors.toList());
+    }
 }

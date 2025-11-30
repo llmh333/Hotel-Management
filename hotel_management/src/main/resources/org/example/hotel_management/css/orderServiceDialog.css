@@ -136,7 +136,7 @@
 
 /* Nút Xác nhận (Màu xanh) */
 .btn-primary {
-    -fx-background-color: -color-dark-green;
+    -fx-background-color: #1f771c;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 20;
@@ -153,4 +153,20 @@
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
     -fx-effect: none;
+}
+
+.input-field {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 5;
+    -fx-border-width: 1px;
+    -fx-padding: 8;
+    -fx-font-size: 14px;
+}
+
+.input-field:focused {
+    -fx-border-color: #1f771c; /* Focus màu xanh */
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(31, 119, 28, 0.2), 5, 0, 0, 0);
 }
