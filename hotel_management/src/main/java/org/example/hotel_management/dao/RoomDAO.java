@@ -4,11 +4,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.example.hotel_management.entity.Room;
-import org.example.hotel_management.entity.User;
 import org.example.hotel_management.enums.RoomStatus;
-import org.example.hotel_management.enums.RoomType;
 import org.example.hotel_management.util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,6 +75,34 @@ public class RoomDAO extends GenericsDAO<Room, Integer> {
             return null;
         } finally {
             entityManager.close();
+        }
+    }
+
+    public List<Room> getRoomsPagination(String keyword, int page, int size) {
+        try (EntityManager em = HibernateUtil.getEntityManager()) {
+
+            StringBuilder hql = new StringBuilder("FROM Room r");
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                hql.append(" WHERE r.roomNumber LIKE :keyword");
+            }
+
+            hql.append(" ORDER BY r.roomNumber ASC");
+
+            TypedQuery<Room> query = em.createQuery(hql.toString(), Room.class);
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                query.setParameter("keyword", keyword + "%");
+            }
+
+            query.setFirstResult((page - 1) * size);
+            query.setMaxResults(size);
+
+            return query.getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 }

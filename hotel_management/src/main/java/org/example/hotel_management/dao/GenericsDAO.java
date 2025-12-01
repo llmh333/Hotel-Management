@@ -99,22 +99,6 @@ public class GenericsDAO<T, ID> {
         }
     }
 
-    public List<T> getPagination(int page, int size) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
-        try {
-
-            TypedQuery<T> query = (TypedQuery<T>) entityManager.createQuery("FROM " + entityClass.getSimpleName());
-            query.setFirstResult((page - 1) * size);
-            query.setMaxResults(size);
-
-            return query.getResultList();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            entityManager.close();
-        }
-    }
-
     public long count() {
         EntityManager entityManager = HibernateUtil.getEntityManager();
         String sql = "SELECT COUNT(*) FROM " + entityClass.getSimpleName();

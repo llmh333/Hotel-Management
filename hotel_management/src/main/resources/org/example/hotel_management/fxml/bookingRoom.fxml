@@ -65,7 +65,7 @@
                         <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #dcdcdc; -fx-border-radius: 5; -fx-padding: 5 10;" styleClass="search-box">
                             <children>
                                 <TextField fx:id="fieldSearchPhone" promptText="Enter phone number to search..." style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
-                                <Button style="-fx-background-color: transparent; -fx-cursor: hand;">
+                                <Button fx:id="btnSearchCustomer" style="-fx-background-color: transparent; -fx-cursor: hand;">
                                     <graphic>
                                         <FontIcon iconColor="#7f8c8d" iconLiteral="fas-search" />
                                     </graphic>

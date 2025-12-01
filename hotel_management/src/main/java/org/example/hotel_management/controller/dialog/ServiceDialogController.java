@@ -23,35 +23,29 @@ public class ServiceDialogController {
     @FXML private TextField txtPrice;
     @FXML private TextField txtCategory;
 
-    // Service & State
     private final IServicesService serviceService = IServicesServiceImpl.getInstance();
-    private ServiceResponseDTO currentService; // Nếu null -> Tạo mới, Khác null -> Update
+    private ServiceResponseDTO currentService;
     private Runnable onSuccessCallback;
 
     public void initialize() {
-        // 1. Cấu hình Spinner (Chỉ số nguyên, Min 0, Max 10000, Mặc định 1)
         SpinnerValueFactory<Integer> valueFactory =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10000, 1);
         spinnerQuantity.setValueFactory(valueFactory);
 
-        // 2. Validate ô Giá (Chỉ cho nhập số và 1 dấu chấm)
         txtPrice.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*(\\.\\d{0,2})?")) {
                 txtPrice.setText(oldValue);
             }
         });
 
-        // 3. Sự kiện đóng
         btnCancel.setOnAction(event -> closeDialog());
         btnSave.setOnAction(event -> handleSave());
     }
 
-    // --- HÀM 1: NHẬN DỮ LIỆU TỪ BÊN NGOÀI ---
     public void setServiceData(ServiceResponseDTO service) {
         this.currentService = service;
 
         if (service != null) {
-            // Chế độ UPDATE
             lblHeaderTitle.setText("Update Service");
             headerIcon.setIconLiteral("fas-edit");
 
@@ -59,7 +53,6 @@ public class ServiceDialogController {
             txtPrice.setText(String.valueOf(service.getPrice()));
             spinnerQuantity.getValueFactory().setValue(service.getQuantity());
         } else {
-            // Chế độ NEW
             lblHeaderTitle.setText("New Service");
             headerIcon.setIconLiteral("fas-plus-circle");
         }
@@ -69,15 +62,12 @@ public class ServiceDialogController {
         this.onSuccessCallback = callback;
     }
 
-    // --- HÀM 2: XỬ LÝ LƯU ---
     private void handleSave() {
-        // 1. Check quyền Admin
         if (!UserSessionUtil.getInstance().isAdmin()) {
             AlertUtil.showAlert(Alert.AlertType.ERROR,"Access Denied", "Only Admin can perform this action.", null);
             return;
         }
 
-        // 2. Validate Form
         String name = txtName.getText().trim();
         String priceText = txtPrice.getText().trim();
         String quantityText = spinnerQuantity.getValueFactory().getValue().toString();
@@ -93,9 +83,8 @@ public class ServiceDialogController {
 
         ServiceRequestDTO requestDTO = new ServiceRequestDTO(name, price, quantity, categoryText, null);
 
-        // 3. Gọi Service (Chạy ngầm để không đơ UI)
         TaskUtil.run(
-                btnSave, // Disable nút save khi đang chạy
+                btnSave,
                 () -> {
                     if (currentService == null) {
                         return serviceService.addService(requestDTO);

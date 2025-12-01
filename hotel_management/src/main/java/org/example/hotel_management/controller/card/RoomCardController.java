@@ -1,5 +1,6 @@
 package org.example.hotel_management.controller.card;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -8,7 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
+import javafx.util.Duration;
 import org.example.hotel_management.constant.AppConstant;
 import org.example.hotel_management.controller.ItemRoomController;
 import org.example.hotel_management.dto.response.RoomResponseDTO;
@@ -23,17 +26,11 @@ import java.util.Map;
 
 public class RoomCardController {
 
-    @FXML
-    private FlowPane containerRooms;
-
-    @FXML
-    private ScrollPane scrollPane;
-
-    @FXML
-    private ProgressIndicator loadingOverlay;
-
-    @FXML
-    private Button btnRefresh;
+    @FXML private FlowPane containerRooms;
+    @FXML private ScrollPane scrollPane;
+    @FXML private ProgressIndicator loadingOverlay;
+    @FXML private Button btnRefresh;
+    @FXML private TextField txtSearchRoom;
 
     private final IRoomService roomService = IRoomServiceImpl.getInstance();
 
@@ -41,9 +38,31 @@ public class RoomCardController {
     private final int pageSize = 12;
     private boolean isLoading = false;
     private boolean isLastPage = false;
-    private Map<Parent, Room> itemRoomLoaded = new HashMap<>();
+    private String currentKeyword = "";
 
     public void initialize() throws IOException {
+
+        loadItemRooms(1);
+
+        PauseTransition debounceTimer = new PauseTransition(Duration.millis(500));
+
+        debounceTimer.setOnFinished(event -> {
+            this.currentKeyword = txtSearchRoom.getText().trim();
+
+            // QUAN TRỌNG: Khi tìm kiếm thì phải Reset lại từ đầu
+            this.pageNum = 1;
+            this.isLastPage = false;
+            this.isLoading = false;
+
+            containerRooms.getChildren().clear(); // Xóa danh sách cũ đi
+            scrollPane.setVvalue(0); // Cuộn lên đầu
+
+            loadItemRooms(1); // Load lại trang 1 với từ khóa mới
+        });
+
+        txtSearchRoom.textProperty().addListener((obs, oldVal, newVal) -> {
+            debounceTimer.playFromStart(); // Reset đồng hồ mỗi khi gõ phím
+        });
 
         btnRefresh.setOnAction(event -> {
             pageNum = 1;
@@ -82,7 +101,6 @@ public class RoomCardController {
             threadBtnRefresh.setDaemon(true);
             threadBtnRefresh.start();
         });
-        loadItemRooms(1);
 
         scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
            if (newValue.doubleValue() > 0.9 && !isLoading && !isLastPage) {
@@ -91,14 +109,17 @@ public class RoomCardController {
         });
     }
 
-    private void loadItemRooms(int pageNum) {
+    private void loadItemRooms(int pageToLoad) {
         isLoading = true;
-        int finalPageNum = pageNum;
+        if (pageToLoad == 1) loadingOverlay.setVisible(true);
+        int finalPageNum = pageToLoad;
         TaskUtil.run(
                 loadingOverlay,
-                () -> roomService.getRoomsPagination(finalPageNum, pageSize),
+                () -> roomService.getRoomsPagination(currentKeyword, pageToLoad, pageSize),
                 (newRooms) -> {
                     isLoading = false;
+
+                    if (pageToLoad == 1) loadingOverlay.setVisible(false);
 
                     if (newRooms == null || newRooms.isEmpty()) {
                         isLastPage = true;
@@ -124,6 +145,8 @@ public class RoomCardController {
                 },
                 (error) -> {
                     isLoading = false;
+                    if (pageToLoad == 1) loadingOverlay.setVisible(false);
+                    error.printStackTrace();
                 }
         );
     }
