@@ -1,0 +1,63 @@
+@import "orderServiceDialog.css"; /* Kế thừa style cũ */
+
+/* --- TỔNG TIỀN --- */
+.label-super-total {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f771c;
+}
+
+.total-card {
+    -fx-background-color: #e8f5e9; /* Nền xanh rất nhạt */
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-border-color: #c5e1a5;
+    -fx-border-radius: 10;
+    -fx-border-width: 1px;
+}
+
+/* --- PAYMENT TOGGLE BUTTONS --- */
+.payment-toggle {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-border-width: 1px;
+    -fx-padding: 15 10;
+    -fx-cursor: hand;
+    -fx-content-display: TOP; /* Icon nằm trên chữ */
+    -fx-font-weight: bold;
+    -fx-text-fill: #7f8c8d;
+}
+
+.payment-toggle .ikonli-font-icon {
+    -fx-icon-color: #7f8c8d;
+}
+
+.payment-toggle:hover {
+    -fx-background-color: #f5f5f5;
+}
+
+/* Khi được chọn (Selected) */
+.payment-toggle:selected {
+    -fx-background-color: #f1f8e9; /* Xanh nhạt */
+    -fx-border-color: #1f771c;     /* Viền xanh */
+    -fx-text-fill: #1f771c;        /* Chữ xanh */
+    -fx-effect: dropshadow(three-pass-box, rgba(31, 119, 28, 0.2), 5, 0, 0, 0);
+}
+
+.payment-toggle:selected .ikonli-font-icon {
+    -fx-icon-color: #1f771c;
+}
+
+/* --- INPUT TIỀN --- */
+.input-field-large {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 5;
+}
+.input-field-large:focused {
+    -fx-border-color: #1f771c;
+}
