@@ -6,18 +6,23 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.example.hotel_management.constant.AppConstant;
 import org.example.hotel_management.controller.ItemRoomController;
+import org.example.hotel_management.controller.dialog.RoomDialogController;
 import org.example.hotel_management.dto.response.RoomResponseDTO;
 import org.example.hotel_management.entity.Room;
+import org.example.hotel_management.entity.UserSessionUtil;
 import org.example.hotel_management.service.IRoomService;
 import org.example.hotel_management.service.impl.IRoomServiceImpl;
+import org.example.hotel_management.util.AlertUtil;
 import org.example.hotel_management.util.TaskUtil;
 
 import java.io.IOException;
@@ -30,6 +35,7 @@ public class RoomCardController {
     @FXML private ScrollPane scrollPane;
     @FXML private ProgressIndicator loadingOverlay;
     @FXML private Button btnRefresh;
+    @FXML private Button btnAddRoom;
     @FXML private TextField txtSearchRoom;
 
     private final IRoomService roomService = IRoomServiceImpl.getInstance();
@@ -49,19 +55,18 @@ public class RoomCardController {
         debounceTimer.setOnFinished(event -> {
             this.currentKeyword = txtSearchRoom.getText().trim();
 
-            // QUAN TRỌNG: Khi tìm kiếm thì phải Reset lại từ đầu
             this.pageNum = 1;
             this.isLastPage = false;
             this.isLoading = false;
 
-            containerRooms.getChildren().clear(); // Xóa danh sách cũ đi
-            scrollPane.setVvalue(0); // Cuộn lên đầu
+            containerRooms.getChildren().clear();
+            scrollPane.setVvalue(0);
 
-            loadItemRooms(1); // Load lại trang 1 với từ khóa mới
+            loadItemRooms(1);
         });
 
         txtSearchRoom.textProperty().addListener((obs, oldVal, newVal) -> {
-            debounceTimer.playFromStart(); // Reset đồng hồ mỗi khi gõ phím
+            debounceTimer.playFromStart();
         });
 
         btnRefresh.setOnAction(event -> {
@@ -102,11 +107,47 @@ public class RoomCardController {
             threadBtnRefresh.start();
         });
 
+        btnAddRoom.setOnAction(event -> handleAddNewRoom());
+
         scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
            if (newValue.doubleValue() > 0.9 && !isLoading && !isLastPage) {
                loadItemRooms(pageNum+1);
            }
         });
+    }
+
+    private void handleAddNewRoom() {
+        if (!UserSessionUtil.getInstance().isAdmin()) {
+            AlertUtil.showAlert(Alert.AlertType.ERROR, "Access Denied", "Only Admin can perform this action.", null);
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(AppConstant.View.roomDialogPath));
+            Parent root = loader.load();
+
+            RoomDialogController controller = loader.getController();
+
+            controller.setRoomData(null);
+
+            controller.setOnSuccessCallback((newRoom) -> {
+                this.pageNum = 1;
+                this.isLastPage = false;
+                containerRooms.getChildren().clear();
+                loadItemRooms(1);
+            });
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
+            stage.setScene(scene);
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            AlertUtil.showAlert(Alert.AlertType.ERROR, "Error", "Cannot open dialog.", null);
+        }
     }
 
     private void loadItemRooms(int pageToLoad) {
@@ -140,6 +181,11 @@ public class RoomCardController {
                             itemRoomController.loadData(room);
 
                             containerRooms.getChildren().add(item);
+
+                            itemRoomController.setOnReloadRequired(() -> {
+                                containerRooms.getChildren().remove(item);
+                            });
+
                         } catch (IOException e) { e.printStackTrace(); }
                     }
                 },

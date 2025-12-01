@@ -1,17 +1,19 @@
 @import "theme.css";
 
-#btn-refresh {
+#btn-refresh, #btn-add-room{
     -fx-background-color: -color-green;
     -fx-font-family: Arial;
     -fx-font-weight: Bold;
     -fx-text-fill: white;
 }
 
-#btn-refresh:hover {
+#btn-refresh:hover,
+#btn-add-room:hover {
     -fx-background-color: -color-dark-green;
 }
 
-#btn-refresh:pressed {
+#btn-refresh:pressed,
+#btn-add-room:pressed {
     -fx-background-color: -color-green;
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;

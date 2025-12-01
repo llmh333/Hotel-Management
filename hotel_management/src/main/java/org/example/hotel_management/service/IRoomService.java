@@ -10,7 +10,7 @@ public interface IRoomService {
 
     RoomResponseDTO addRoom(RoomRequestDTO roomRequestDTO);
     RoomResponseDTO updateRoom(RoomRequestDTO roomRequestDTO);
-    boolean deleteRoomByRoomNumber(Integer id);
+    boolean deleteRoomByRoomNumber(String roomNumber);
     List<RoomResponseDTO> getRoomsPagination(String keywords, int pageNum, int pageSize);
 
     List<RoomResponseDTO> getOccupiedRooms();

@@ -8,7 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.example.hotel_management.constant.AppConstant;
+import org.example.hotel_management.controller.dialog.RoomDialogController;
 import org.example.hotel_management.dto.response.RoomResponseDTO;
 import org.example.hotel_management.entity.UserSessionUtil;
 import org.example.hotel_management.enums.RoomStatus;
@@ -28,11 +30,16 @@ public class ItemRoomController {
     @FXML private FontIcon btnPencil;
 
     private RoomResponseDTO roomResponseDTO;
+    private Runnable onReloadRequired;
 
     public void initialize() {
         btnBookRoom.setOnAction(event -> handleMainAction());
 
-//        btnPencil.setOnMouseClicked(event -> handleEditRoom());
+        btnPencil.setOnMouseClicked(event -> handleEditRoom());
+    }
+
+    public void setOnReloadRequired(Runnable onReloadRequired) {
+        this.onReloadRequired = onReloadRequired;
     }
 
     public void loadData(RoomResponseDTO responseDTO) {
@@ -85,29 +92,35 @@ public class ItemRoomController {
             AlertUtil.showAlert(Alert.AlertType.ERROR, "Access Denied", "Only Admin can edit room details.", null);
             return;
         }
-//
-//        try {
-//            Map<Parent, RoomDialogController> loaderMap = LoadFXMLUtil.loadFXML("/org/example/hotel_management/fxml/dialog/room_dialog.fxml");
-//            Parent root = loaderMap.keySet().iterator().next();
-//            RoomDialogController controller = loaderMap.get(root);
-//
-//            controller.setRoomData(this.roomResponseDTO);
-//
-//            controller.setOnSuccessCallback(updatedRoom -> {
-//                this.loadData(updatedRoom);
-//            });
-//
-//            Stage stage = new Stage();
-//            stage.initStyle(StageStyle.TRANSPARENT);
-//            stage.initModality(Modality.APPLICATION_MODAL);
-//            Scene scene = new Scene(root);
-//            scene.setFill(null);
-//            stage.setScene(scene);
-//            stage.show();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
+        try {
+            Map<Parent, RoomDialogController> loaderMap = LoadFXMLUtil.loadFXML(AppConstant.View.roomDialogPath);
+            Parent root = loaderMap.keySet().iterator().next();
+            RoomDialogController controller = loaderMap.get(root);
+
+            controller.setRoomData(this.roomResponseDTO);
+
+            controller.setOnSuccessCallback(updatedRoom -> {
+                if (updatedRoom == null) {
+                    if (onReloadRequired != null) {
+                        onReloadRequired.run();
+                    }
+                } else {
+                    this.loadData(updatedRoom);
+                }
+            });
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            Scene scene = new Scene(root);
+            scene.setFill(null);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
