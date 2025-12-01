@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import org.example.hotel_management.config.DataInitialize;
 import org.example.hotel_management.constant.AppConstant;
 import org.example.hotel_management.util.DatabaseMigrationUtil;
 import org.example.hotel_management.util.HibernateUtil;
@@ -38,6 +39,7 @@ public class Main extends Application {
             alert.showAndWait();
             System.exit(1);
         }
+        DataInitialize.init();
         FXMLLoader authDashboardLoader = new FXMLLoader(getClass().getResource("/org/example/hotel_management/fxml/authDashboard.fxml"));
         Parent root = authDashboardLoader.load();
         Scene scene = new Scene(root);

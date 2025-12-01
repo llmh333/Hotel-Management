@@ -1,6 +1,7 @@
 package org.example.hotel_management.entity;
 
 import org.example.hotel_management.dto.response.UserResponseDTO;
+import org.example.hotel_management.enums.Role;
 
 public class UserSessionUtil {
 
@@ -33,6 +34,6 @@ public class UserSessionUtil {
     }
 
     public boolean isAdmin() {
-        return currentUser.getRole().equals("ADMIN");
+        return Role.ADMIN.equals(currentUser.getRole());
     }
 }

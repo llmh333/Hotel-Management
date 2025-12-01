@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -33,10 +34,20 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="10.0" styleClass="search-box">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <FontIcon iconColor="#7f8c8d" iconLiteral="fas-search" iconSize="20" />
-                  <TextField id="field-search" fx:id="txtSearchRoom" prefHeight="26.0" prefWidth="913.0" promptText="Search rooms" styleClass="transparent-field" HBox.hgrow="ALWAYS" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="818.0" spacing="10.0" styleClass="search-box">
+                     <children>
+                        <FontIcon iconColor="#7f8c8d" iconLiteral="fas-search" iconSize="20" />
+                        <TextField id="field-search" fx:id="txtSearchRoom" prefHeight="28.0" prefWidth="775.0" promptText="Search rooms" styleClass="transparent-field" HBox.hgrow="ALWAYS" />
+                        <Region HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <Button id="btn-add-room" fx:id="btnAddRoom" prefHeight="30.0" prefWidth="117.0" text="New Room">
+                     <graphic>
+                        <FontIcon iconColor="white" iconLiteral="fas-plus" />
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
             <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="711.0" prefWidth="950.0" style="-fx-background: transparent; -fx-background-color: transparent;">

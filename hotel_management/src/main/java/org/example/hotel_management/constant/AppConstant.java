@@ -37,5 +37,7 @@ public class AppConstant {
         public static final String bookingRoomPath = "/org/example/hotel_management/fxml/bookingRoom.fxml";
         public static final String bookingServicePath = "/org/example/hotel_management/fxml/order_service_dialog.fxml";
         public static final String serviceDialogPath = "/org/example/hotel_management/fxml/dialog/service_dialog.fxml";
+
+        public static final String roomDialogPath = "/org/example/hotel_management/fxml/dialog/info_room_dialog.fxml";
     }
 }

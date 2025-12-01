@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane prefWidth="450.0" styleClass="dialog-pane" stylesheets="@../../css/orderServiceDialog.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hotel_management.controller.dialog.RoomDialogController">
+    <children>
+        <VBox spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
+            </padding>
+            <children>
+
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <FontIcon fx:id="headerIcon" iconColor="#1f771c" iconLiteral="fas-door-open" iconSize="24" />
+                        <Label fx:id="lblHeaderTitle" styleClass="header-title" text="Edit Room Details" />
+                    </children>
+                </HBox>
+
+                <VBox spacing="15.0">
+                    <children>
+
+                        <VBox spacing="5.0">
+                            <Label styleClass="label-bold" text="Room Number" />
+                            <TextField fx:id="txtRoomNumber" promptText="e.g. 101, 205..." styleClass="input-field" />
+                        </VBox>
+
+                        <HBox spacing="15.0">
+                            <children>
+                                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                    <Label styleClass="label-bold" text="Room Type" />
+                                    <ComboBox fx:id="comboType" maxWidth="Infinity" styleClass="searchable-combo" />
+                                </VBox>
+
+                                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                    <Label styleClass="label-bold" text="Price / Night ($)" />
+                                    <TextField fx:id="txtPrice" promptText="0.00" styleClass="input-field" />
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <VBox spacing="5.0">
+                            <Label styleClass="label-bold" text="Current Status" />
+                            <ComboBox fx:id="comboStatus" maxWidth="Infinity" styleClass="searchable-combo" />
+                            <Label style="-fx-text-fill: #e67e22; -fx-font-size: 11px; -fx-font-style: italic;" text="* Note: Changing status manually may affect bookings." />
+                        </VBox>
+
+                    </children>
+                </VBox>
+
+                <HBox alignment="CENTER_RIGHT" spacing="10.0" style="-fx-padding: 10 0 0 0;">
+
+                    <Button fx:id="btnDelete" style="-fx-text-fill: #e74c3c; -fx-background-color: #fceceb;" styleClass="btn-secondary" text="Delete">
+                        <graphic>
+                            <FontIcon iconColor="#e74c3c" iconLiteral="fas-trash-alt" />
+                        </graphic>
+                    </Button>
+
+                    <Region HBox.hgrow="ALWAYS" /> <Button fx:id="btnCancel" styleClass="btn-secondary" text="Cancel" />
+                    <Button fx:id="btnSave" styleClass="btn-primary" text="Save Changes">
+                        <graphic>
+                            <FontIcon iconColor="white" iconLiteral="fas-save" />
+                        </graphic>
+                    </Button>
+                </HBox>
+
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
