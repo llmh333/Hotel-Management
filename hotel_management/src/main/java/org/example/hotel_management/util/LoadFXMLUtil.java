@@ -19,6 +19,7 @@ public class LoadFXMLUtil {
             return Map.of(root, controller);
         } catch (Exception e) {
             logger.warning("Failed to load FXML " + path);
+            e.printStackTrace();
         }
         return null;
     }

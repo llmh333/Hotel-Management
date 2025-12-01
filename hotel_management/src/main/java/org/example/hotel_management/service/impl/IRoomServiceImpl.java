@@ -36,9 +36,9 @@ public class IRoomServiceImpl implements IRoomService {
     }
 
     @Override
-    public List<RoomResponseDTO> getRoomsPagination(int pageNum, int pageSize) {
+    public List<RoomResponseDTO> getRoomsPagination(String keywords, int pageNum, int pageSize) {
 
-        List<Room> rooms = roomDAO.getRoomsPagination(pageNum, pageSize);
+        List<Room> rooms = roomDAO.getRoomsPagination(keywords, pageNum, pageSize);
 
         return rooms.stream().map(roomMapper::toRoomResponseDTO).collect(Collectors.toList());
     }

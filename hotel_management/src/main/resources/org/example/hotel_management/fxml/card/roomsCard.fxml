@@ -36,7 +36,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="10.0" styleClass="search-box">
                <children>
                   <FontIcon iconColor="#7f8c8d" iconLiteral="fas-search" iconSize="20" />
-                  <TextField id="field-search" fx:id="boxSearch" prefHeight="26.0" prefWidth="913.0" promptText="Search rooms" styleClass="transparent-field" HBox.hgrow="ALWAYS" />
+                  <TextField id="field-search" fx:id="txtSearchRoom" prefHeight="26.0" prefWidth="913.0" promptText="Search rooms" styleClass="transparent-field" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="711.0" prefWidth="950.0" style="-fx-background: transparent; -fx-background-color: transparent;">
@@ -44,7 +44,7 @@
                   <FlowPane fx:id="containerRooms" alignment="CENTER" hgap="30.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWrapLength="1000.0" vgap="30.0" />
                </content>
             </ScrollPane>
-            <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="350.0" style="-fx-region-background: #52B02E;">
+            <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="133.0" prefWidth="950.0" style="-fx-region-background: #52B02E;">
                <children>
                   <ProgressIndicator fx:id="loadingOverlay" style="-fx-progress-color: #52B02E;" visible="false" />
                </children>

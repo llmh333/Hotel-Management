@@ -14,7 +14,6 @@ import org.example.hotel_management.service.impl.IServicesServiceImpl;
 import org.example.hotel_management.util.AlertUtil;
 import org.example.hotel_management.util.TaskUtil;
 
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,7 +40,6 @@ public class OrderServiceController {
 
         spinnerQuantity.valueProperty().addListener((obs, oldVal, newVal) -> calculateTotal());
 
-        // 3. Load danh sách phòng đang có khách
         loadActiveRooms();
 
         btnCancel.setOnAction(e -> closeDialog());
@@ -52,15 +50,13 @@ public class OrderServiceController {
         this.onSuccessCallback = callback;
     }
 
-    // --- HÀM 1: SETUP DỮ LIỆU ---
     public void setServiceData(ServiceResponseDTO service) {
         this.selectedService = service;
         lblServiceName.setText(service.getName());
         lblServicePrice.setText("$" + service.getPrice());
-        calculateTotal(); // Tính tiền lần đầu
+        calculateTotal();
     }
 
-    // --- HÀM 2: LOAD PHÒNG & CONVERTER ---
     private void loadActiveRooms() {
         TaskUtil.run(
                 null,
@@ -92,7 +88,6 @@ public class OrderServiceController {
         }
     }
 
-    // --- HÀM 3: XỬ LÝ ĐẶT MÓN ---
     private void handleOrder() {
         RoomResponseDTO selectedRoom = searchableRoom.getValue();
 
@@ -103,7 +98,6 @@ public class OrderServiceController {
 
         int quantity = spinnerQuantity.getValue();
 
-        // Kiểm tra tồn kho (Optional)
         if (quantity > selectedService.getQuantity()) {
             AlertUtil.showAlert(Alert.AlertType.ERROR, "Quantity Error", "Not enough stock! Available: " + selectedService.getQuantity(), null);
             return;
