@@ -37,6 +37,7 @@ public class DataInitialize {
                 .role(Role.ADMIN)
                 .phoneNumber(phoneNumber)
                 .email(email)
+                .fullName(fullName)
                 .build();
 
         userDAO.add(user);

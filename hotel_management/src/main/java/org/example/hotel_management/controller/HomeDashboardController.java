@@ -77,6 +77,12 @@ public class HomeDashboardController {
                 showCard(AppConstant.View.servicesCardPath);
         });
 
+        btnBilling.setOnAction(event -> {
+            if (btnBilling.isSelected()) {
+                showCard(AppConstant.View.billCardPath);
+            }
+        });
+
     }
 
     public void showCard(String path) {
@@ -84,7 +90,7 @@ public class HomeDashboardController {
             try {
                 Parent card;
 
-                if (viewCardCache.containsKey(path)) {
+                if (viewCardCache.containsKey(path) && !path.equals(AppConstant.View.billCardPath)) {
                     card = viewCardCache.get(path);
                 } else {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));

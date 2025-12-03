@@ -46,7 +46,7 @@ public class ServicesCardController {
     @FXML private Pagination pagination;
 
     @FXML private TableView<ServiceResponseDTO> tableServices;
-    @FXML private TableColumn<ServiceResponseDTO, Integer> colId;
+    @FXML private TableColumn<ServiceResponseDTO, Long> colId;
     @FXML private TableColumn<ServiceResponseDTO, String> colName;
     @FXML private TableColumn<ServiceResponseDTO, String> colCategory;
     @FXML private TableColumn<ServiceResponseDTO, String> colPrice;
@@ -79,7 +79,7 @@ public class ServicesCardController {
 
     // --- 1. SETUP CỘT & ACTION ---
     private void setupTableColumns() {
-        colId.setCellValueFactory(cell -> new SimpleObjectProperty<Integer>(cell.getValue().getId()));
+        colId.setCellValueFactory(cell -> new SimpleObjectProperty<Long>(cell.getValue().getId()));
         colName.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getName()));
         colCategory.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCategory().name()));
         colPrice.setCellValueFactory(cell -> new SimpleStringProperty("$" + cell.getValue().getPrice()));

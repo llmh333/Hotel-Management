@@ -89,7 +89,7 @@ public class ServiceDialogController {
                     if (currentService == null) {
                         return serviceService.addService(requestDTO);
                     } else {
-                        return serviceService.updateService(Integer.valueOf(currentService.getId()), requestDTO);
+                        return serviceService.updateService(Long.valueOf(currentService.getId()), requestDTO);
                     }
                 },
                 (success) -> {

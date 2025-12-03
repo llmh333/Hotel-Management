@@ -32,4 +32,23 @@ public class BookingDAO extends GenericsDAO<Booking, Integer> {
             entityManager.close();
         }
     }
+
+    public Optional<Booking> findActiveBookingWithDetails(String roomNumber) {
+        try (EntityManager em = HibernateUtil.getEntityManager()) {
+            String jpql = "SELECT b FROM Booking b " +
+                    "LEFT JOIN FETCH b.customer " +
+                    "LEFT JOIN FETCH b.room " +
+                    "LEFT JOIN FETCH b.user " +
+                    "WHERE b.room.roomNumber = :roomNumber ";
+
+            TypedQuery<Booking> query = em.createQuery(jpql, Booking.class);
+            query.setParameter("roomNumber", roomNumber.trim());
+
+            return query.getResultStream().findFirst();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
+    }
 }
