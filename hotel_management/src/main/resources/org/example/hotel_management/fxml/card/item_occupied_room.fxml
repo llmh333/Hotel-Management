@@ -6,16 +6,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="rootPane" prefWidth="100.0" styleClass="room-mini-card" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hotel_management.controller.item.ItemActiveRoomController">
+<AnchorPane fx:id="rootPane" prefWidth="100.0" styleClass="room-mini-card" stylesheets="@../../css/billing_card.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hotel_management.controller.dialog.ItemOccupiedRoomDialogController">
     <children>
         <VBox alignment="CENTER" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <padding>
                 <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
             </padding>
             <children>
-                <FontIcon iconLiteral="fas-bed" iconSize="20" iconColor="#1f771c" />
-                <Label fx:id="lblRoomNumber" text="101" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #1f771c;" />
-                <Label fx:id="lblCustomerName" text="Mr. Hai" style="-fx-font-size: 11; -fx-text-fill: #7f8c8d;" wrapText="true" textAlignment="CENTER" />
+                <FontIcon fx:id="iconBed" iconColor="#1f771c" iconLiteral="fas-bed" iconSize="20" />
+                <Label fx:id="lblRoomNumber" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #1f771c;" text="101" />
+                <Label fx:id="lblCustomerName" style="-fx-font-size: 11; -fx-text-fill: #7f8c8d;" text="Mr. Hai" textAlignment="CENTER" wrapText="true" />
             </children>
         </VBox>
     </children>

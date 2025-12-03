@@ -5,11 +5,10 @@ import org.example.hotel_management.dao.BookingDAO;
 import org.example.hotel_management.dao.CustomerDAO;
 import org.example.hotel_management.dao.RoomDAO;
 import org.example.hotel_management.dto.request.BookingRoomRequestDTO;
-import org.example.hotel_management.entity.Booking;
-import org.example.hotel_management.entity.Customer;
-import org.example.hotel_management.entity.Room;
-import org.example.hotel_management.entity.UserSessionUtil;
+import org.example.hotel_management.dto.response.BookingResponseDto;
+import org.example.hotel_management.entity.*;
 import org.example.hotel_management.enums.RoomStatus;
+import org.example.hotel_management.mapper.BookingMapper;
 import org.example.hotel_management.mapper.UserMapper;
 import org.example.hotel_management.service.IBookingService;
 import org.example.hotel_management.util.AlertUtil;
@@ -19,10 +18,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 public class IBookingServiceImpl implements IBookingService {
 
     private static final IBookingServiceImpl INSTANCE = new IBookingServiceImpl();
+    private final Logger logger = Logger.getLogger(IBookingServiceImpl.class.getName());
 
     private static final RoomDAO roomDAO = RoomDAO.getInstance();
     private static final BookingDAO bookingDAO = BookingDAO.getInstance();
@@ -30,6 +31,7 @@ public class IBookingServiceImpl implements IBookingService {
 
     private static final UserSessionUtil userSessionUtil = UserSessionUtil.getInstance();
     private static final UserMapper userMapper = UserMapper.getInstance();
+    private static final BookingMapper bookingMapper = BookingMapper.getInstance();
     public static IBookingServiceImpl getInstance() {
         return INSTANCE;
     }
@@ -69,6 +71,62 @@ public class IBookingServiceImpl implements IBookingService {
         room.setStatus(RoomStatus.OCCUPIED);
         roomDAO.update(room);
         return true;
+    }
+
+    @Override
+    public BookingResponseDto getBookingByRoom(String roomNumber) {
+        Optional<Room> roomOptional = roomDAO.findByRoomNumber(roomNumber);
+        if (roomOptional.isEmpty()) {
+            return null;
+        }
+
+        Optional<Booking> bookingOptional = bookingDAO.findByRoomNumber(roomNumber);
+        if (bookingOptional.isEmpty()) {
+            return null;
+        }
+
+        Customer customer = bookingOptional.get().getCustomer();
+        User user = bookingOptional.get().getUser();
+        BookingResponseDto bookingResponseDto = BookingResponseDto.builder()
+                .id(bookingOptional.get().getId())
+                .status(bookingOptional.get().getStatus())
+                .checkIn(bookingOptional.get().getCheckIn())
+                .checkOut(bookingOptional.get().getCheckOut())
+                .fullName(user.getFullName())
+                .customerName(customer.getFullName())
+                .customerPhone(customer.getPhoneNumber())
+                .roomNumber(roomOptional.get().getRoomNumber())
+                .roomId(roomOptional.get().getId())
+                .pricePerHours(roomOptional.get().getPricePerHours())
+                .totalAmount(bookingOptional.get().getTotalAmount())
+                .build();
+        return bookingResponseDto;
+    }
+
+    @Override
+    public BookingResponseDto getBookingByRoomOccupied(String roomNumber) {
+        logger.info("getBookingByRoomOccupied: " + roomNumber);
+        Optional<Booking> bookingOptional = bookingDAO.findActiveBookingWithDetails(roomNumber);
+        logger.info("getBookingByRoomOccupied: " + bookingOptional);
+        if (bookingOptional.isEmpty()) {
+            logger.info("getBookingByRoomOccupied: " + "bookingOptional is empty");
+            return null;
+        }
+        Booking booking = bookingOptional.get();
+
+        return BookingResponseDto.builder()
+                .id(booking.getId())
+                .status(booking.getStatus())
+                .checkIn(booking.getCheckIn())
+                .checkOut(booking.getCheckOut())
+                .totalAmount(booking.getTotalAmount())
+                .fullName(booking.getUser().getFullName())
+                .customerName(booking.getCustomer().getFullName())
+                .customerPhone(booking.getCustomer().getPhoneNumber())
+                .roomNumber(booking.getRoom().getRoomNumber())
+                .roomId(booking.getRoom().getId())
+                .pricePerHours(booking.getRoom().getPricePerHours())
+                .build();
     }
 
     private LocalDateTime parseDate(LocalDate date, String originalTime) {

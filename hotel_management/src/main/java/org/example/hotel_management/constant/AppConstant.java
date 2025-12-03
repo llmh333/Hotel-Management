@@ -28,6 +28,8 @@ public class AppConstant {
         public static final String dashboardCardPath = "/org/example/hotel_management/fxml/card/dashboardCard.fxml";
         public static final String roomsCardPath = "/org/example/hotel_management/fxml/card/roomsCard.fxml";
         public static final String servicesCardPath = "/org/example/hotel_management/fxml/card/servicesCard.fxml";
+        public static final String bookingsCardPath = "/org/example/hotel_management/fxml/card/bookingsCard.fxml";
+        public static final String billCardPath = "/org/example/hotel_management/fxml/card/billing_card.fxml";
 
         public static final String itemRoomsPath = "/org/example/hotel_management/fxml/itemRoom.fxml";
 
@@ -39,5 +41,6 @@ public class AppConstant {
         public static final String serviceDialogPath = "/org/example/hotel_management/fxml/dialog/service_dialog.fxml";
 
         public static final String roomDialogPath = "/org/example/hotel_management/fxml/dialog/info_room_dialog.fxml";
+        public static final String itemOccupiedRoomPath = "/org/example/hotel_management/fxml/card/item_occupied_room.fxml";
     }
 }

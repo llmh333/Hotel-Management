@@ -8,6 +8,7 @@ import org.example.hotel_management.dao.ServiceDAO;
 import org.example.hotel_management.dto.request.BookingServiceRequestDTO;
 import org.example.hotel_management.dto.request.ServiceRequestDTO;
 import org.example.hotel_management.dto.response.BookingServiceResponseDTO;
+import org.example.hotel_management.dto.response.ServiceBookingResponseDto;
 import org.example.hotel_management.dto.response.ServiceResponseDTO;
 import org.example.hotel_management.entity.Booking;
 import org.example.hotel_management.entity.BookingService;
@@ -52,7 +53,7 @@ public class IServicesServiceImpl implements IServicesService {
     }
 
     @Override
-    public ServiceResponseDTO updateService(Integer idService, ServiceRequestDTO serviceRequestDTO) {
+    public ServiceResponseDTO updateService(Long idService, ServiceRequestDTO serviceRequestDTO) {
 
         Optional<Service> serviceOptional = serviceDAO.findById(idService);
         if (serviceOptional.isEmpty()) {
@@ -65,7 +66,7 @@ public class IServicesServiceImpl implements IServicesService {
     }
 
     @Override
-    public boolean deleteServiceById(Integer id) {
+    public boolean deleteServiceById(Long id) {
         Optional<Service> serviceOptional = serviceDAO.findById(id);
         if (serviceOptional.isEmpty()) {
             AlertUtil.showAlert(Alert.AlertType.ERROR, "ERROR", "Service not found", "Please choose another service");
@@ -81,7 +82,7 @@ public class IServicesServiceImpl implements IServicesService {
     }
 
     @Override
-    public ServiceResponseDTO getServiceById(Integer id) {
+    public ServiceResponseDTO getServiceById(Long id) {
         Optional<Service> serviceOptional = serviceDAO.findById(id);
         if (serviceOptional.isEmpty()) {
             AlertUtil.showAlert(Alert.AlertType.ERROR, "ERROR", "Service not found", "Please choose another service");
@@ -104,9 +105,9 @@ public class IServicesServiceImpl implements IServicesService {
     }
 
     @Override
-    public BookingServiceResponseDTO bookServiceForRoom(String roomNumber, Integer idService, int quantity) {
+    public BookingServiceResponseDTO bookServiceForRoom(String roomNumber, Long serviceId, int quantity) {
 
-        Optional<Service> serviceOptional = serviceDAO.findById(idService);
+        Optional<Service> serviceOptional = serviceDAO.findById(serviceId);
         if (serviceOptional.isEmpty()) {
             AlertUtil.showAlert(Alert.AlertType.ERROR, "ERROR", "Service not found", "Please choose another service");
             return null;
@@ -128,6 +129,14 @@ public class IServicesServiceImpl implements IServicesService {
         service.setQuantity(service.getQuantity() - quantity);
         serviceDAO.update(service);
 
+        Optional<BookingService> bookingServiceOptional = bookingServiceDAO.findByBookingIdAndServiceId(bookingOptional.get().getId(), serviceId);
+        if (bookingServiceOptional.isPresent()) {
+            BookingService bookingService = bookingServiceOptional.get();
+            bookingService.setQuantity(bookingService.getQuantity() + quantity);
+            bookingServiceDAO.update(bookingService);
+            return bookingServiceMapper.toBookingServiceResponseDTO(bookingService);
+        }
+
         Booking booking = bookingOptional.get();
 
         BookingService bookingService = BookingService.builder()
@@ -137,5 +146,11 @@ public class IServicesServiceImpl implements IServicesService {
                 .build();
         BookingServiceResponseDTO bookingServiceResponseDTO = bookingServiceMapper.toBookingServiceResponseDTO(bookingServiceDAO.add(bookingService).get());
         return bookingServiceResponseDTO;
+    }
+
+    @Override
+    public List<ServiceBookingResponseDto> getServicesByBookingId(Long id) {
+        List<ServiceBookingResponseDto> services = serviceDAO.findAllByBookingId(id);
+        return services.isEmpty() ? List.of() : services;
     }
 }

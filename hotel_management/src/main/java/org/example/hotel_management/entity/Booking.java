@@ -22,12 +22,15 @@ public class Booking {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private User user;
 
     private LocalDateTime checkIn;

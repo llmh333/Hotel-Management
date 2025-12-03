@@ -159,9 +159,9 @@
 
 .modern-table .column-header .label {
     -fx-text-fill: #7f8c8d; /* Chữ màu xám nhạt sang trọng */
-    -fx-font-weight: bold;
     -fx-font-size: 13px;
-    -fx-alignment: CENTER-LEFT; /* Căn trái mặc định */
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
 }
 
 /* 2. ROWS (Dòng dữ liệu) */
@@ -170,6 +170,23 @@
     -fx-border-color: transparent transparent #f5f5f5 transparent; /* Kẻ đường mờ giữa các dòng */
     -fx-border-width: 1px;
     -fx-padding: 5 0 5 0; /* Tạo khoảng thở trên dưới cho dòng */
+}
+
+.col-money {
+    -fx-alignment: CENTER-RIGHT;
+    -fx-padding: 0 10 0 0; /* Cách lề phải 10px cho thoáng */
+    -fx-font-weight: bold; /* Tiền nên đậm */
+}
+
+/* 2. Cột Số Lượng (Qty) -> Căn Giữa */
+.col-center {
+    -fx-alignment: CENTER;
+}
+
+/* 3. Cột Mô Tả (Description) -> Căn Trái */
+.col-left {
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0 0 0 10; /* Cách lề trái 10px */
 }
 
 /* Từng ô dữ liệu */

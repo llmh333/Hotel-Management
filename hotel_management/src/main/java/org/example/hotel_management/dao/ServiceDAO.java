@@ -7,6 +7,9 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import org.example.hotel_management.dto.response.ServiceBookingResponseDto;
+import org.example.hotel_management.dto.response.ServiceResponseDTO;
+import org.example.hotel_management.entity.BookingService;
 import org.example.hotel_management.entity.Service;
 import org.example.hotel_management.entity.User;
 import org.example.hotel_management.enums.ServiceCategory;
@@ -114,5 +117,27 @@ public class ServiceDAO extends GenericsDAO<Service, Integer>{
             }
         }
 
+    public List<ServiceBookingResponseDto> findAllByBookingId(Long bookingId) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        try {
+            String jpql = "SELECT new org.example.hotel_management.dto.response.ServiceBookingResponseDto(" +
+                    "   bs.service.name," +
+                    "   bs.service.description, " +
+                    "   bs.quantity," +
+                    "   bs.service.price, " +
+                    "   bs.totalPrice" +
+                    ") " +
+                    "FROM BookingService bs " +
+                    "WHERE bs.booking.id = :bookingId";
+            TypedQuery<ServiceBookingResponseDto> query = entityManager.createQuery(jpql, ServiceBookingResponseDto.class);
+            query.setParameter("bookingId", bookingId);
 
+            return query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        } finally {
+            entityManager.close();
+        }
+    }
 }
