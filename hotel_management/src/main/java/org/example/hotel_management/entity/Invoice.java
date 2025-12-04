@@ -22,10 +22,14 @@ public class Invoice {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Booking booking;
+    private String roomNumber;
+
+    private String customerName;
+
+    private String customerPhoneNumber;
 
     private double totalRoomCharge;
+
     private double totalServiceCharge;
 
     private double totalAmount;

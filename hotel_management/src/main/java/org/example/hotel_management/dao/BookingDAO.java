@@ -1,13 +1,14 @@
 package org.example.hotel_management.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import org.example.hotel_management.entity.Booking;
 import org.example.hotel_management.util.HibernateUtil;
 
 import java.util.Optional;
 
-public class BookingDAO extends GenericsDAO<Booking, Integer> {
+public class BookingDAO extends GenericsDAO<Booking, Long> {
     private static final BookingDAO INSTANCE = new BookingDAO(Booking.class);
 
     private BookingDAO(Class<Booking> entityClass) {
@@ -49,6 +50,24 @@ public class BookingDAO extends GenericsDAO<Booking, Integer> {
         } catch (Exception e) {
             e.printStackTrace();
             return Optional.empty();
+        }
+    }
+
+    public boolean deleteByRoomNumber(String roomNumber) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        EntityTransaction transactional = entityManager.getTransaction();
+        try {
+            transactional.begin();
+            Booking booking = findByRoomNumber(roomNumber).orElseThrow();
+            entityManager.remove(booking);
+            transactional.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            transactional.rollback();
+            return false;
+        } finally {
+            entityManager.close();
         }
     }
 }

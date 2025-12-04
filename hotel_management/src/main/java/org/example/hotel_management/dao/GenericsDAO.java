@@ -76,6 +76,27 @@ public class GenericsDAO<T, ID> {
         }
     }
 
+    public boolean deleteById(ID id) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        EntityTransaction transactional = entityManager.getTransaction();
+        try {
+            transactional.begin();
+            T entity = entityManager.find(entityClass, id);
+            System.out.println(entity.toString());
+            entityManager.remove(entity);
+            transactional.commit();
+        } catch (Exception e) {
+            if  (transactional != null && transactional.isActive()) {
+                transactional.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            entityManager.close();
+        }
+        return true;
+    }
+
     public Optional<T> findById(Object id) {
         EntityManager entityManager = HibernateUtil.getEntityManager();
         try {

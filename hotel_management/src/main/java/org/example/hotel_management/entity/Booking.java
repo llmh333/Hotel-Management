@@ -6,6 +6,7 @@ import org.example.hotel_management.enums.BookingStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "bookings")
@@ -32,6 +33,10 @@ public class Booking {
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private User user;
+
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private List<BookingService> bookingServices;
 
     private LocalDateTime checkIn;
 
