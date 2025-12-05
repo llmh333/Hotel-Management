@@ -30,6 +30,7 @@ public class AppConstant {
         public static final String servicesCardPath = "/org/example/hotel_management/fxml/card/servicesCard.fxml";
         public static final String bookingsCardPath = "/org/example/hotel_management/fxml/card/bookingsCard.fxml";
         public static final String billCardPath = "/org/example/hotel_management/fxml/card/billing_card.fxml";
+        public static final String statisticsCardPath = "/org/example/hotel_management/fxml/card/statistical_card.fxml";
 
         public static final String itemRoomsPath = "/org/example/hotel_management/fxml/itemRoom.fxml";
 

@@ -19,7 +19,7 @@ public class DataInitialize {
     public static void init() {
 
         logger.info("Initializing data...");
-        Optional<User> userOptional = userDAO.findByUsername("admin");
+        Optional<User> userOptional = userDAO.findByUsername(dotenv.get("ADMIN_USERNAME"));
         if (userOptional.isPresent()) {
             logger.info("Data already initialized");
             return;
