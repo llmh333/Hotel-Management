@@ -101,6 +101,12 @@ public class HomeDashboardController {
             }
         });
 
+        btnSetting.setOnAction(event -> {
+            if (btnSetting.isSelected()) {
+                showCard(AppConstant.View.settingCardPath);
+            }
+        });
+
     }
 
     private void handleLogout() {
@@ -109,7 +115,6 @@ public class HomeDashboardController {
             return;
         }
 
-        // 2. Xóa Session
         UserSessionUtil.getInstance().clearSession();
 
         try {

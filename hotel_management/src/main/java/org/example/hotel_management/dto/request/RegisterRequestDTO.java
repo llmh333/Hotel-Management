@@ -24,10 +24,10 @@ public class RegisterRequestDTO {
     @Email(message = ErrorMessageConstant.Auth.INVALID_EMAIL)
     private String email;
 
-    @Pattern(regexp = "^[\\p{L} .'-]+$")
+    @Pattern(regexp = "^[\\p{L} .'-]+$", message = ErrorMessageConstant.Auth.INVALID_FULL_NAME)
     private String fullName;
 
-    @Pattern(regexp = "^(0|\\+84)(3[2-9]|5[2689]|7[06789]|8[1-9]|9[0-9])\\d{7}$")
+    @Pattern(regexp = "^(0|\\+84)(3[2-9]|5[2689]|7[06789]|8[1-9]|9[0-9])\\d{7}$", message = ErrorMessageConstant.Auth.INVALID_PHONE_NUMBER)
     private String phoneNumber;
 
     private Role role;
