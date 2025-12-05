@@ -4,15 +4,22 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.hotel_management.constant.AppConstant;
 import org.example.hotel_management.dto.response.UserResponseDTO;
+import org.example.hotel_management.entity.UserSessionUtil;
 import org.example.hotel_management.enums.Role;
+import org.example.hotel_management.util.AlertUtil;
 import org.example.hotel_management.util.AnimationUtil;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +44,9 @@ public class HomeDashboardController {
     private ToggleButton btnSetting;
 
     @FXML
+    private Button btnLogout;
+
+    @FXML
     private Label lblUsername;
 
     @FXML
@@ -51,6 +61,8 @@ public class HomeDashboardController {
 
         btnDashboard.setSelected(true);
         showCard(AppConstant.View.dashboardCardPath);
+
+        btnLogout.setOnAction(event -> handleLogout());
 
         if (btnDashboard.getToggleGroup() != null) {
             btnDashboard.getToggleGroup().selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
@@ -89,6 +101,36 @@ public class HomeDashboardController {
             }
         });
 
+    }
+
+    private void handleLogout() {
+        boolean confirm = AlertUtil.showConfirmation("Logout", "Are you sure you want to logout?", null);
+        if (!confirm) {
+            return;
+        }
+
+        // 2. Xóa Session
+        UserSessionUtil.getInstance().clearSession();
+
+        try {
+            Stage currentStage = (Stage) btnLogout.getScene().getWindow();
+            currentStage.close();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(AppConstant.View.authDashboard));
+            Parent root = loader.load();
+
+            Stage authStage = new Stage();
+            authStage.setTitle("Hotel Management System");
+            authStage.setScene(new Scene(root));
+
+            AlertUtil.showAlert(Alert.AlertType.INFORMATION, "Success", "Logout Successful", null);
+            authStage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            AlertUtil.showAlert(Alert.AlertType.ERROR, "Error", "Cannot load Login screen", e.getMessage());
+        }
     }
 
     public void showCard(String path) {
