@@ -1,12 +1,10 @@
 package org.example.hotel_management.service.impl;
 
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
 import org.example.hotel_management.constant.ErrorMessageConstant;
 import org.example.hotel_management.dao.UserDAO;
-import org.example.hotel_management.dto.request.LoginRequestDto;
-import org.example.hotel_management.dto.request.RegisterRequestDto;
+import org.example.hotel_management.dto.request.LoginRequestDTO;
+import org.example.hotel_management.dto.request.RegisterRequestDTO;
 import org.example.hotel_management.dto.response.UserResponseDTO;
 import org.example.hotel_management.entity.User;
 import org.example.hotel_management.enums.Role;
@@ -27,7 +25,7 @@ public class IAuthServiceImpl implements IAuthService {
     }
 
     @Override
-    public UserResponseDTO login(LoginRequestDto loginRequestDto) {
+    public UserResponseDTO login(LoginRequestDTO loginRequestDto) {
 
         Optional<User> userOptional = userDAO.findByUsername(loginRequestDto.getUsername());
         if (userOptional.isPresent()) {
@@ -39,7 +37,7 @@ public class IAuthServiceImpl implements IAuthService {
     }
 
     @Override
-    public UserResponseDTO register(RegisterRequestDto registerRequestDto) {
+    public UserResponseDTO register(RegisterRequestDTO registerRequestDto) {
         User user = userMapper.toUser(registerRequestDto);
 
         if (userDAO.existsByUsername(registerRequestDto.getUsername())) {

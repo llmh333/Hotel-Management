@@ -1,4 +1,4 @@
-package org.example.hotel_management.controller;
+package org.example.hotel_management.controller.card;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import org.example.hotel_management.constant.AppConstant;
-import org.example.hotel_management.dto.request.LoginRequestDto;
+import org.example.hotel_management.controller.HomeDashboardController;
+import org.example.hotel_management.dto.request.LoginRequestDTO;
 import org.example.hotel_management.dto.response.UserResponseDTO;
 import org.example.hotel_management.entity.UserSessionUtil;
 import org.example.hotel_management.service.IAuthService;
@@ -44,7 +45,7 @@ public class LoginCardController {
     public void initialize() {
 
         btnSignIn.setOnAction(event -> {
-            LoginRequestDto requestDto = new LoginRequestDto(fieldUsername.getText(), fieldPassword.getText());
+            LoginRequestDTO requestDto = new LoginRequestDTO(fieldUsername.getText(), fieldPassword.getText());
 
             String errors = ValidatorUtil.validate(requestDto);
             if (errors != null) {

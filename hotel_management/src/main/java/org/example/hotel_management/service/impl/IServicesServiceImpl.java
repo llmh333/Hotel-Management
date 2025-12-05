@@ -5,10 +5,9 @@ import org.example.hotel_management.dao.BookingDAO;
 import org.example.hotel_management.dao.BookingServiceDAO;
 import org.example.hotel_management.dao.RoomDAO;
 import org.example.hotel_management.dao.ServiceDAO;
-import org.example.hotel_management.dto.request.BookingServiceRequestDTO;
 import org.example.hotel_management.dto.request.ServiceRequestDTO;
 import org.example.hotel_management.dto.response.BookingServiceResponseDTO;
-import org.example.hotel_management.dto.response.ServiceBookingResponseDto;
+import org.example.hotel_management.dto.response.ServiceBookingResponseDTO;
 import org.example.hotel_management.dto.response.ServiceResponseDTO;
 import org.example.hotel_management.entity.Booking;
 import org.example.hotel_management.entity.BookingService;
@@ -149,8 +148,8 @@ public class IServicesServiceImpl implements IServicesService {
     }
 
     @Override
-    public List<ServiceBookingResponseDto> getServicesByBookingId(Long id) {
-        List<ServiceBookingResponseDto> services = serviceDAO.findAllByBookingId(id);
+    public List<ServiceBookingResponseDTO> getServicesByBookingId(Long id) {
+        List<ServiceBookingResponseDTO> services = serviceDAO.findAllByBookingId(id);
         return services.isEmpty() ? List.of() : services;
     }
 }

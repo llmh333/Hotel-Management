@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.hotel_management.dto.request.InvoiceRequestDto;
+import org.example.hotel_management.dto.request.InvoiceRequestDTO;
 import org.example.hotel_management.entity.UserSessionUtil;
 import org.example.hotel_management.enums.PaymentMethod;
 import org.example.hotel_management.service.IInvoiceService;
@@ -148,7 +148,7 @@ public class PaymentDialogController {
         String method = selected.getText().toUpperCase(); // CASH, TRANSFER, CREDIT CARD
 
         PaymentMethod paymentMethod = PaymentMethod.valueOf(method);
-        InvoiceRequestDto invoiceRequestDto = InvoiceRequestDto.builder()
+        InvoiceRequestDTO invoiceRequestDto = InvoiceRequestDTO.builder()
                 .paymentMethod(paymentMethod)
                 .totalAmount(totalAmount)
                 .customerName(customerName)

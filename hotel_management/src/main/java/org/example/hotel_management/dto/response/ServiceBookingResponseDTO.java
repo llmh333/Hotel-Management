@@ -1,18 +1,19 @@
 package org.example.hotel_management.dto.response;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InvoiceItemResponseDto {
+@Builder
+public class ServiceBookingResponseDTO {
 
     private String name;
     private String description;
-    private int quantity;
+    private int quantityOrdered;
     private double price;
-    private double total;
-
+    private double totalPrice;
 }

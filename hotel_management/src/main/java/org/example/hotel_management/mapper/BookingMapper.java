@@ -1,6 +1,6 @@
 package org.example.hotel_management.mapper;
 
-import org.example.hotel_management.dto.response.BookingResponseDto;
+import org.example.hotel_management.dto.response.BookingResponseDTO;
 import org.example.hotel_management.entity.Booking;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -14,6 +14,6 @@ public interface BookingMapper {
         return INSTANCE;
     }
 
-    BookingResponseDto toBookingResponseDto(Booking booking);
+    BookingResponseDTO toBookingResponseDto(Booking booking);
 
 }

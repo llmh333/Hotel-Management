@@ -9,7 +9,7 @@ import org.example.hotel_management.constant.ErrorMessageConstant;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequestDto {
+public class LoginRequestDTO {
 
     @Pattern(regexp = "^[a-zA-Z0-9]{6,}$", message = ErrorMessageConstant.Auth.INVALID_USERNAME)
     private String username;

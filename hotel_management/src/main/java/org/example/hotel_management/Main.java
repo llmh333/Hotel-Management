@@ -40,7 +40,7 @@ public class Main extends Application {
             System.exit(1);
         }
         DataInitialize.init();
-        FXMLLoader authDashboardLoader = new FXMLLoader(getClass().getResource("/org/example/hotel_management/fxml/authDashboard.fxml"));
+        FXMLLoader authDashboardLoader = new FXMLLoader(getClass().getResource("/org/example/hotel_management/fxml/auth_dashboard.fxml"));
         Parent root = authDashboardLoader.load();
         Scene scene = new Scene(root);
 

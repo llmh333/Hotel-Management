@@ -1,8 +1,8 @@
 package org.example.hotel_management.service;
 
-import org.example.hotel_management.dto.request.InvoiceRequestDto;
+import org.example.hotel_management.dto.request.InvoiceRequestDTO;
 
 public interface IInvoiceService {
 
-    public boolean addInvoice(InvoiceRequestDto invoiceRequestDto, Long bookingId);
+    public boolean addInvoice(InvoiceRequestDTO invoiceRequestDto, Long bookingId);
 }

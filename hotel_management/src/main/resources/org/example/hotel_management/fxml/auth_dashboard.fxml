@@ -14,8 +14,8 @@
 
 <StackPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hotel_management.controller.AuthDashboardController">
    <children>
-      <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #ECF1EB;" stylesheets="@../css/authDashboard.css" />
-      <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="500.0" prefWidth="500.0" spacing="15.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" stylesheets="@../css/authDashboard.css" StackPane.alignment="CENTER">
+      <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #ECF1EB;" stylesheets="@../css/auth_dashboard.css" />
+      <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="500.0" prefWidth="500.0" spacing="15.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" stylesheets="@../css/auth_dashboard.css" StackPane.alignment="CENTER">
          <padding>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>

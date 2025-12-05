@@ -5,7 +5,7 @@ import org.example.hotel_management.dao.BookingDAO;
 import org.example.hotel_management.dao.CustomerDAO;
 import org.example.hotel_management.dao.RoomDAO;
 import org.example.hotel_management.dto.request.BookingRoomRequestDTO;
-import org.example.hotel_management.dto.response.BookingResponseDto;
+import org.example.hotel_management.dto.response.BookingResponseDTO;
 import org.example.hotel_management.entity.*;
 import org.example.hotel_management.enums.RoomStatus;
 import org.example.hotel_management.mapper.BookingMapper;
@@ -74,7 +74,7 @@ public class IBookingServiceImpl implements IBookingService {
     }
 
     @Override
-    public BookingResponseDto getBookingByRoom(String roomNumber) {
+    public BookingResponseDTO getBookingByRoom(String roomNumber) {
         Optional<Room> roomOptional = roomDAO.findByRoomNumber(roomNumber);
         if (roomOptional.isEmpty()) {
             return null;
@@ -87,7 +87,7 @@ public class IBookingServiceImpl implements IBookingService {
 
         Customer customer = bookingOptional.get().getCustomer();
         User user = bookingOptional.get().getUser();
-        BookingResponseDto bookingResponseDto = BookingResponseDto.builder()
+        BookingResponseDTO bookingResponseDto = BookingResponseDTO.builder()
                 .id(bookingOptional.get().getId())
                 .status(bookingOptional.get().getStatus())
                 .checkIn(bookingOptional.get().getCheckIn())
@@ -104,7 +104,7 @@ public class IBookingServiceImpl implements IBookingService {
     }
 
     @Override
-    public BookingResponseDto getBookingByRoomOccupied(String roomNumber) {
+    public BookingResponseDTO getBookingByRoomOccupied(String roomNumber) {
         logger.info("getBookingByRoomOccupied: " + roomNumber);
         Optional<Booking> bookingOptional = bookingDAO.findActiveBookingWithDetails(roomNumber);
         logger.info("getBookingByRoomOccupied: " + bookingOptional);
@@ -114,7 +114,7 @@ public class IBookingServiceImpl implements IBookingService {
         }
         Booking booking = bookingOptional.get();
 
-        return BookingResponseDto.builder()
+        return BookingResponseDTO.builder()
                 .id(booking.getId())
                 .status(booking.getStatus())
                 .checkIn(booking.getCheckIn())
