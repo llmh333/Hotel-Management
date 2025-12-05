@@ -1,9 +1,6 @@
 package org.example.hotel_management.dto.response;
 
 import lombok.*;
-import org.example.hotel_management.entity.Customer;
-import org.example.hotel_management.entity.Room;
-import org.example.hotel_management.entity.User;
 import org.example.hotel_management.enums.BookingStatus;
 
 import java.math.BigDecimal;
@@ -14,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BookingResponseDto {
+public class BookingResponseDTO {
 
     private Long id;
     private String customerName;

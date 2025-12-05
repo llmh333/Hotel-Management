@@ -47,7 +47,7 @@
             </TextField>
          </children>
       </VBox>
-      <Button id="btnSendResetPassword" fx:id="btnSignin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="35.0" styleClass="btn" stylesheets="@../../css/authDashboard.css" text="Send Default Password" textFill="WHITE">
+      <Button id="btnSendResetPassword" fx:id="btnSignin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="35.0" styleClass="btn" stylesheets="@../../css/auth_dashboard.css" text="Send Default Password" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

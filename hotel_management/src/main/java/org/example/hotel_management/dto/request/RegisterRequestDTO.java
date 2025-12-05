@@ -13,7 +13,7 @@ import org.example.hotel_management.enums.Role;
 @Getter
 @ToString
 @Builder
-public class RegisterRequestDto {
+public class RegisterRequestDTO {
 
     @Pattern(regexp = "^[a-zA-Z0-9]{6,}$", message = ErrorMessageConstant.Auth.INVALID_USERNAME)
     private String username;

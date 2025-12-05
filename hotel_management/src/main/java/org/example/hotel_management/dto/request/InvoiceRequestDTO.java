@@ -10,7 +10,7 @@ import org.example.hotel_management.enums.PaymentMethod;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class InvoiceRequestDto {
+public class InvoiceRequestDTO {
 
     private PaymentMethod paymentMethod;
     private String customerName;

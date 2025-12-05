@@ -46,12 +46,12 @@ public class BillingCardController {
     @FXML private Label lblRoomNumber;
     @FXML private Label lblCheckInTime;
 
-    @FXML private TableView<InvoiceItemResponseDto> tableInvoice;
-    @FXML private TableColumn<InvoiceItemResponseDto, String> colItem;
-    @FXML private TableColumn<InvoiceItemResponseDto, String> colDescription;
-    @FXML private TableColumn<InvoiceItemResponseDto, Integer> colQty;
-    @FXML private TableColumn<InvoiceItemResponseDto, String> colPrice;
-    @FXML private TableColumn<InvoiceItemResponseDto, String> colTotal;
+    @FXML private TableView<InvoiceItemResponseDTO> tableInvoice;
+    @FXML private TableColumn<InvoiceItemResponseDTO, String> colItem;
+    @FXML private TableColumn<InvoiceItemResponseDTO, String> colDescription;
+    @FXML private TableColumn<InvoiceItemResponseDTO, Integer> colQty;
+    @FXML private TableColumn<InvoiceItemResponseDTO, String> colPrice;
+    @FXML private TableColumn<InvoiceItemResponseDTO, String> colTotal;
 
     @FXML private Label lblRoomCharge;
     @FXML private Label lblServiceCharge;
@@ -64,7 +64,7 @@ public class BillingCardController {
 
     private List<RoomResponseDTO> allOccupiedRooms = new ArrayList<>(); // Cache để lọc nhanh
     private List<ItemOccupiedRoomDialogController> itemControllers = new ArrayList<>(); // Để quản lý việc select
-    private BookingResponseDto currentBooking; // Booking đang xem
+    private BookingResponseDTO currentBooking; // Booking đang xem
     private double currentTotalAmount = 0.0;
     private double currentServiceCharge = 0.0;
     private double currentRoomCharge = 0.0;
@@ -151,9 +151,9 @@ public class BillingCardController {
         TaskUtil.run(
                 null,
                 () -> {
-                    BookingResponseDto booking = bookingService.getBookingByRoomOccupied(roomNumber);
+                    BookingResponseDTO booking = bookingService.getBookingByRoomOccupied(roomNumber);
                     if (booking == null) return null;
-                    List<ServiceBookingResponseDto> services = servicesService.getServicesByBookingId(booking.getId());
+                    List<ServiceBookingResponseDTO> services = servicesService.getServicesByBookingId(booking.getId());
                     return new Pair<>(booking, services);
                 },
                 (data) -> {
@@ -167,7 +167,7 @@ public class BillingCardController {
                     this.roomNumber = roomNumber;
                     this.customerName = currentBooking.getCustomerName();
                     this.customerPhone = currentBooking.getCustomerPhone();
-                    List<ServiceBookingResponseDto> services = data.getValue();
+                    List<ServiceBookingResponseDTO> services = data.getValue();
 
                     populateInvoice(currentBooking, services);
                     btnCheckout.setDisable(false);
@@ -179,7 +179,7 @@ public class BillingCardController {
     private void findBookingByPhone(String phone) {
     }
 
-    private void populateInvoice(BookingResponseDto booking, List<ServiceBookingResponseDto> services) {
+    private void populateInvoice(BookingResponseDTO booking, List<ServiceBookingResponseDTO> services) {
         lblCustomerName.setText(booking.getCustomerName());
         lblCustomerPhone.setText(booking.getCustomerPhone());
         lblRoomNumber.setText(booking.getRoomNumber());
@@ -193,7 +193,7 @@ public class BillingCardController {
             return;
         }
 
-        List<InvoiceItemResponseDto> items = new ArrayList<>();
+        List<InvoiceItemResponseDTO> items = new ArrayList<>();
 
         int totalHours;
         if (booking.getCheckOut() != null) {
@@ -204,11 +204,11 @@ public class BillingCardController {
         double roomPrice = booking.getPricePerHours();
         double roomTotal = totalHours * roomPrice;
 
-        items.add(new InvoiceItemResponseDto("Room " + booking.getRoomNumber(), null, totalHours, roomPrice, roomTotal));
+        items.add(new InvoiceItemResponseDTO("Room " + booking.getRoomNumber(), null, totalHours, roomPrice, roomTotal));
 
         double serviceTotal = 0;
-        for (ServiceBookingResponseDto s : services) {
-            items.add(new InvoiceItemResponseDto(s.getName(), s.getDescription(), s.getQuantityOrdered(), s.getPrice(), s.getTotalPrice()));
+        for (ServiceBookingResponseDTO s : services) {
+            items.add(new InvoiceItemResponseDTO(s.getName(), s.getDescription(), s.getQuantityOrdered(), s.getPrice(), s.getTotalPrice()));
             serviceTotal += s.getTotalPrice();
         }
 

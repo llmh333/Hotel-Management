@@ -21,23 +21,23 @@ public class AppConstant {
     }
 
     public static class View {
-        public static final String loginCardPath = "/org/example/hotel_management/fxml/card/loginCard.fxml";
-        public static final String registerCardPath = "/org/example/hotel_management/fxml/card/registerCard.fxml";
-        public static final String forgotCardPath = "/org/example/hotel_management/fxml/card/forgotCard.fxml";
+        public static final String loginCardPath = "/org/example/hotel_management/fxml/card/login_card.fxml";
+        public static final String registerCardPath = "/org/example/hotel_management/fxml/card/register_card.fxml";
+        public static final String forgotCardPath = "/org/example/hotel_management/fxml/card/forgot_card.fxml";
 
-        public static final String dashboardCardPath = "/org/example/hotel_management/fxml/card/dashboardCard.fxml";
-        public static final String roomsCardPath = "/org/example/hotel_management/fxml/card/roomsCard.fxml";
-        public static final String servicesCardPath = "/org/example/hotel_management/fxml/card/servicesCard.fxml";
-        public static final String bookingsCardPath = "/org/example/hotel_management/fxml/card/bookingsCard.fxml";
+        public static final String dashboardCardPath = "/org/example/hotel_management/fxml/card/dashboard_card.fxml";
+        public static final String roomsCardPath = "/org/example/hotel_management/fxml/card/rooms_card.fxml";
+        public static final String servicesCardPath = "/org/example/hotel_management/fxml/card/services_card.fxml";
+        public static final String bookingsCardPath = "/org/example/hotel_management/fxml/card/bookings_card.fxml";
         public static final String billCardPath = "/org/example/hotel_management/fxml/card/billing_card.fxml";
         public static final String statisticsCardPath = "/org/example/hotel_management/fxml/card/statistical_card.fxml";
 
-        public static final String itemRoomsPath = "/org/example/hotel_management/fxml/itemRoom.fxml";
+        public static final String itemRoomsPath = "/org/example/hotel_management/fxml/item_room.fxml";
 
-        public static final String authDashboard =  "/org/example/hotel_management/fxml/authDashboard.fxml";
-        public static final String homeDashboard = "/org/example/hotel_management/fxml/homeDashboard.fxml";
+        public static final String authDashboard = "/org/example/hotel_management/fxml/auth_dashboard.fxml";
+        public static final String homeDashboard = "/org/example/hotel_management/fxml/home_dashboard.fxml";
 
-        public static final String bookingRoomPath = "/org/example/hotel_management/fxml/bookingRoom.fxml";
+        public static final String bookingRoomPath = "/org/example/hotel_management/fxml/booking_room.fxml";
         public static final String bookingServicePath = "/org/example/hotel_management/fxml/order_service_dialog.fxml";
         public static final String serviceDialogPath = "/org/example/hotel_management/fxml/dialog/service_dialog.fxml";
 

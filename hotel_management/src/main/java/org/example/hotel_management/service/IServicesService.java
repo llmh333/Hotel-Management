@@ -2,7 +2,7 @@ package org.example.hotel_management.service;
 
 import org.example.hotel_management.dto.request.ServiceRequestDTO;
 import org.example.hotel_management.dto.response.BookingServiceResponseDTO;
-import org.example.hotel_management.dto.response.ServiceBookingResponseDto;
+import org.example.hotel_management.dto.response.ServiceBookingResponseDTO;
 import org.example.hotel_management.dto.response.ServiceResponseDTO;
 import org.example.hotel_management.enums.ServiceCategory;
 
@@ -19,5 +19,5 @@ public interface IServicesService {
     BookingServiceResponseDTO bookServiceForRoom(String roomNumber, Long serviceId, int quantity);
 
 
-    List<ServiceBookingResponseDto> getServicesByBookingId(Long id);
+    List<ServiceBookingResponseDTO> getServicesByBookingId(Long id);
 }

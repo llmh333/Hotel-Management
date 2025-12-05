@@ -1,4 +1,4 @@
-package org.example.hotel_management.controller;
+package org.example.hotel_management.controller.card;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
-import org.example.hotel_management.dto.request.RegisterRequestDto;
+import org.example.hotel_management.dto.request.RegisterRequestDTO;
 import org.example.hotel_management.dto.response.UserResponseDTO;
 import org.example.hotel_management.service.IAuthService;
 import org.example.hotel_management.service.impl.IAuthServiceImpl;
@@ -50,7 +50,7 @@ public class RegisterCardController {
             String fullName = fieldFullName.getText();
             String phoneNumber = fieldPhoneNumber.getText();
 
-            RegisterRequestDto registerRequestDto = RegisterRequestDto.builder()
+            RegisterRequestDTO registerRequestDto = RegisterRequestDTO.builder()
                     .username(username)
                     .password(password)
                     .email(email)

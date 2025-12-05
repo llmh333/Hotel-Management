@@ -7,16 +7,11 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import org.example.hotel_management.dto.response.ServiceBookingResponseDto;
-import org.example.hotel_management.dto.response.ServiceResponseDTO;
-import org.example.hotel_management.entity.BookingService;
+import org.example.hotel_management.dto.response.ServiceBookingResponseDTO;
 import org.example.hotel_management.entity.Service;
-import org.example.hotel_management.entity.User;
 import org.example.hotel_management.enums.ServiceCategory;
 import org.example.hotel_management.util.HibernateUtil;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -117,10 +112,10 @@ public class ServiceDAO extends GenericsDAO<Service, Integer>{
             }
         }
 
-    public List<ServiceBookingResponseDto> findAllByBookingId(Long bookingId) {
+    public List<ServiceBookingResponseDTO> findAllByBookingId(Long bookingId) {
         EntityManager entityManager = HibernateUtil.getEntityManager();
         try {
-            String jpql = "SELECT new org.example.hotel_management.dto.response.ServiceBookingResponseDto(" +
+            String jpql = "SELECT new org.example.hotel_management.dto.response.ServiceBookingResponseDTO(" +
                     "   bs.service.name," +
                     "   bs.service.description, " +
                     "   bs.quantity," +
@@ -129,7 +124,7 @@ public class ServiceDAO extends GenericsDAO<Service, Integer>{
                     ") " +
                     "FROM BookingService bs " +
                     "WHERE bs.booking.id = :bookingId";
-            TypedQuery<ServiceBookingResponseDto> query = entityManager.createQuery(jpql, ServiceBookingResponseDto.class);
+            TypedQuery<ServiceBookingResponseDTO> query = entityManager.createQuery(jpql, ServiceBookingResponseDTO.class);
             query.setParameter("bookingId", bookingId);
 
             return query.getResultList();

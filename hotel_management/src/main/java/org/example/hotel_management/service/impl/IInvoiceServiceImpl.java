@@ -1,15 +1,13 @@
 package org.example.hotel_management.service.impl;
 
-import javafx.scene.control.Alert;
 import org.example.hotel_management.dao.BookingDAO;
 import org.example.hotel_management.dao.InvoiceDAO;
 import org.example.hotel_management.dao.RoomDAO;
-import org.example.hotel_management.dto.request.InvoiceRequestDto;
+import org.example.hotel_management.dto.request.InvoiceRequestDTO;
 import org.example.hotel_management.entity.*;
 import org.example.hotel_management.enums.RoomStatus;
 import org.example.hotel_management.mapper.UserMapper;
 import org.example.hotel_management.service.IInvoiceService;
-import org.example.hotel_management.util.AlertUtil;
 
 import java.util.Optional;
 
@@ -26,7 +24,7 @@ public class IInvoiceServiceImpl implements IInvoiceService {
     }
 
     @Override
-    public boolean addInvoice(InvoiceRequestDto invoiceRequestDto, Long bookingId) {
+    public boolean addInvoice(InvoiceRequestDTO invoiceRequestDto, Long bookingId) {
 
         User user = userMapper.toUser(UserSessionUtil.getInstance().getCurrentUser());
         Invoice invoice = new Invoice();
