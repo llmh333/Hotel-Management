@@ -1,6 +1,7 @@
 package org.example.hotel_management.controller;
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.example.hotel_management.constant.AppConstant;
+import org.example.hotel_management.controller.card.ForgotCardController;
 
 public class AuthDashboardController {
 
@@ -28,8 +30,7 @@ public class AuthDashboardController {
     @FXML
     public void initialize(){
 
-        btnCardLogin.setSelected(true);
-        showCard(AppConstant.View.loginCardPath);
+        switchToLogin();
 
         if (btnCardLogin.getToggleGroup() != null) {
             btnCardLogin.getToggleGroup().selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
@@ -54,10 +55,16 @@ public class AuthDashboardController {
         btnCardForgot.setOnAction(event -> {
             if  (btnCardForgot.isSelected()) {
                 showCard(AppConstant.View.forgotCardPath);
-
             }
         });
 
+    }
+
+    private void switchToLogin() {
+        if (!btnCardLogin.isSelected()) {
+            btnCardLogin.setSelected(true); // Cập nhật trạng thái nút
+        }
+        showCard(AppConstant.View.loginCardPath);
     }
 
     public void showCard(String path) {
@@ -65,7 +72,12 @@ public class AuthDashboardController {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
                 Parent card = fxmlLoader.load();
-
+                if (path.equals(AppConstant.View.forgotCardPath)) {
+                    ForgotCardController forgotCardController = fxmlLoader.getController();
+                    forgotCardController.setOnSuccessCallback(() -> {
+                        Platform.runLater(() -> switchToLogin());
+                    });
+                }
                 stackPane.getChildren().clear();
                 stackPane.getChildren().add(card);
 
