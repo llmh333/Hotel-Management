@@ -83,6 +83,12 @@ public class HomeDashboardController {
             }
         });
 
+        btnStatistical.setOnAction(event -> {
+            if (btnStatistical.isSelected()) {
+                showCard(AppConstant.View.statisticsCardPath);
+            }
+        });
+
     }
 
     public void showCard(String path) {
