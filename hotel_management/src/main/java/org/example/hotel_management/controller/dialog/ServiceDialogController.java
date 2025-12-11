@@ -1,11 +1,13 @@
 package org.example.hotel_management.controller.dialog;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.example.hotel_management.dto.request.ServiceRequestDTO;
 import org.example.hotel_management.dto.response.ServiceResponseDTO;
 import org.example.hotel_management.entity.UserSessionUtil;
+import org.example.hotel_management.enums.ServiceCategory;
 import org.example.hotel_management.service.IServicesService;
 import org.example.hotel_management.service.impl.IServicesServiceImpl;
 import org.example.hotel_management.util.AlertUtil;
@@ -21,7 +23,7 @@ public class ServiceDialogController {
     @FXML private Spinner<Integer> spinnerQuantity;
     @FXML private TextField txtName;
     @FXML private TextField txtPrice;
-    @FXML private TextField txtCategory;
+    @FXML private ComboBox<ServiceCategory> comboCategory;
 
     private final IServicesService serviceService = IServicesServiceImpl.getInstance();
     private ServiceResponseDTO currentService;
@@ -38,6 +40,8 @@ public class ServiceDialogController {
             }
         });
 
+        comboCategory.setItems(FXCollections.observableArrayList(ServiceCategory.values()));
+
         btnCancel.setOnAction(event -> closeDialog());
         btnSave.setOnAction(event -> handleSave());
     }
@@ -52,9 +56,18 @@ public class ServiceDialogController {
             txtName.setText(service.getName());
             txtPrice.setText(String.valueOf(service.getPrice()));
             spinnerQuantity.getValueFactory().setValue(service.getQuantity());
+
+            try {
+                ServiceCategory cat = ServiceCategory.valueOf(service.getCategory().name());
+                comboCategory.setValue(cat);
+            } catch (Exception e) {
+                comboCategory.setValue(null);
+            }
+
         } else {
             lblHeaderTitle.setText("New Service");
             headerIcon.setIconLiteral("fas-plus-circle");
+            comboCategory.getSelectionModel().selectFirst();
         }
     }
 
@@ -71,7 +84,8 @@ public class ServiceDialogController {
         String name = txtName.getText().trim();
         String priceText = txtPrice.getText().trim();
         String quantityText = spinnerQuantity.getValueFactory().getValue().toString();
-        String categoryText = txtCategory.getText().trim();
+        ServiceCategory selectedCategory = comboCategory.getValue();
+
 
         if (name.isEmpty() || priceText.isEmpty()) {
             AlertUtil.showAlert(Alert.AlertType.ERROR, "Validation", "Please fill in all fields.", null);
@@ -81,7 +95,7 @@ public class ServiceDialogController {
         double price = Double.parseDouble(priceText);
         int quantity = spinnerQuantity.getValue();
 
-        ServiceRequestDTO requestDTO = new ServiceRequestDTO(name, price, quantity, categoryText, null);
+        ServiceRequestDTO requestDTO = new ServiceRequestDTO(name, price, quantity, selectedCategory.name(), null);
 
         TaskUtil.run(
                 btnSave,

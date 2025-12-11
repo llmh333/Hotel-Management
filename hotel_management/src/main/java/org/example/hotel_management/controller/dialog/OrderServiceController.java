@@ -60,7 +60,7 @@ public class OrderServiceController {
     private void loadActiveRooms() {
         TaskUtil.run(
                 null,
-                () -> roomService.getOccupiedRooms(), // Query DB: WHERE status = 'OCCUPIED'
+                () -> roomService.getOccupiedRooms(),
                 (rooms) -> {
                     searchableRoom.getItems().setAll(rooms);
 
@@ -114,8 +114,6 @@ public class OrderServiceController {
                         }
 
                         closeDialog();
-                    } else {
-                        AlertUtil.showAlert(Alert.AlertType.ERROR, "Error", "Failed to place order.", null);
                     }
                 },
                 (error) -> logger.log(Level.SEVERE, error.getMessage())
