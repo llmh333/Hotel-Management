@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane prefWidth="700.0" styleClass="dialog-pane" stylesheets="@../../css/payment_dialog.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hotel_management.controller.dialog.PaymentDialogController">
+    <children>
+        <VBox spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+            <children>
+
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <FontIcon iconColor="#1f771c" iconLiteral="fas-cash-register" iconSize="24" />
+                        <Label styleClass="header-title" text="Payment &amp; Checkout" />
+                    </children>
+                </HBox>
+
+                <VBox alignment="CENTER" prefHeight="25.0" prefWidth="640.0" spacing="5.0" styleClass="total-card">
+                    <children>
+                        <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px; -fx-font-weight: bold;" text="TOTAL PAYABLE" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="10.0">
+                    <children>
+                        <Label styleClass="label-bold" text="Select Payment Method" />
+                        <HBox spacing="15.0">
+                            <children>
+                                <ToggleButton fx:id="btnCash" maxWidth="Infinity" styleClass="payment-toggle" text="Cash" HBox.hgrow="ALWAYS">
+                                    <graphic>
+                                        <FontIcon iconLiteral="fas-money-bill-wave" iconSize="20" />
+                                    </graphic>
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="paymentGroup" />
+                                    </toggleGroup>
+                                </ToggleButton>
+
+                                <ToggleButton fx:id="btnTransfer" maxWidth="Infinity" styleClass="payment-toggle" text="Transfer" toggleGroup="$paymentGroup" HBox.hgrow="ALWAYS">
+                                    <graphic>
+                                        <FontIcon iconLiteral="fas-qrcode" iconSize="20" />
+                                    </graphic>
+                                </ToggleButton>
+
+                                <ToggleButton fx:id="btnCard" maxWidth="Infinity" styleClass="payment-toggle" text="Credit Card" toggleGroup="$paymentGroup" HBox.hgrow="ALWAYS">
+                                    <graphic>
+                                        <FontIcon iconLiteral="fas-credit-card" iconSize="20" />
+                                    </graphic>
+                                </ToggleButton>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <Separator />
+
+                <StackPane VBox.vgrow="ALWAYS">
+                    <children>
+
+                        <VBox fx:id="boxCash" spacing="15.0" style="-fx-background-color: white;">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                    <children>
+                                        <Label prefHeight="20.0" prefWidth="125.0" styleClass="label-bold" text="Amount Received:" />
+                                        <TextField fx:id="txtReceived" prefHeight="41.0" prefWidth="474.0" promptText="0.00" styleClass="input-field-large" HBox.hgrow="ALWAYS" />
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                    <children>
+                                        <Label prefWidth="120.0" styleClass="label-bold" text="Change Return:" />
+                                        <Label fx:id="lblChange" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1f771c;" text="" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                        <VBox fx:id="boxTransfer" alignment="TOP_CENTER" spacing="10.0" style="-fx-background-color: white;" visible="false">
+                            <children>
+                                <Label style="-fx-text-fill: #7f8c8d;" text="Scan QR Code to Pay" />
+                                <ImageView fx:id="imgQrCode" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);" />
+                                <VBox alignment="CENTER" spacing="2.0">
+                                    <Label styleClass="label-bold" text="MB Bank - 0987654321" />
+                                    <Label style="-fx-text-fill: #7f8c8d;" text="Account Name: HOTEL ADMIN" />
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <VBox fx:id="boxCard" alignment="CENTER" spacing="15.0" style="-fx-background-color: white;" visible="false">
+                            <children>
+                                <FontIcon iconColor="#bdc3c7" iconLiteral="fas-satellite-dish" iconSize="40" />
+                                <Label styleClass="label-gray" text="Waiting for POS Terminal..." />
+                                <Label styleClass="label-bold" text="Please swipe card on the machine" />
+                            </children>
+                        </VBox>
+
+                    </children>
+                </StackPane>
+
+                <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-padding: 15 0 0 0;">
+                    <Button fx:id="btnCancel" styleClass="btn-secondary" text="Cancel" />
+                    <Button fx:id="btnConfirmPay" prefHeight="33.0" prefWidth="156.0" styleClass="btn-primary" text="Confirm Payment">
+                        <graphic>
+                            <FontIcon iconColor="white" iconLiteral="fas-check" />
+                        </graphic>
+                    </Button>
+                </HBox>
+
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

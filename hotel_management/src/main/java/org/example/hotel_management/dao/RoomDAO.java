@@ -1,0 +1,108 @@
+package org.example.hotel_management.dao;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
+import org.example.hotel_management.entity.Room;
+import org.example.hotel_management.enums.RoomStatus;
+import org.example.hotel_management.util.HibernateUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class RoomDAO extends GenericsDAO<Room, Integer> {
+
+    private static final RoomDAO INSTANCE = new RoomDAO();
+    private RoomDAO() {
+        super(Room.class);
+    }
+
+    public static RoomDAO getInstance() {
+        return INSTANCE;
+    }
+
+    public List<Room> getRoomsPagination(int page, int size) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        try {
+
+            TypedQuery<Room> query = entityManager.createQuery("FROM Room", Room.class);
+            query.setFirstResult((page - 1) * size);
+            query.setMaxResults(size);
+
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public Optional<Room> findByRoomNumber(String roomNumber) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        try {
+            String jsql = "FROM Room u WHERE u.roomNumber = :roomNumber";
+            TypedQuery<Room> query = entityManager.createQuery(jsql, Room.class);
+            query.setParameter("roomNumber", roomNumber);
+
+            return Optional.of(query.getSingleResult());
+        } catch (NoResultException e) {
+            return Optional.empty();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public boolean isAvailability(String roomNumber) {
+        Optional<Room> roomOptional = findByRoomNumber(roomNumber);
+        if (roomOptional.isPresent()) {
+            Room room = roomOptional.get();
+            if (RoomStatus.AVAILABLE.equals(room.getStatus())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<Room> getOccupiedRooms() {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        try {
+            String jsql = "FROM Room u WHERE u.status = 'OCCUPIED' ORDER BY u.roomNumber ASC";
+            TypedQuery<Room> query = entityManager.createQuery(jsql, Room.class);
+
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public List<Room> getRoomsPagination(String keyword, int page, int size) {
+        try (EntityManager em = HibernateUtil.getEntityManager()) {
+
+            StringBuilder hql = new StringBuilder("FROM Room r");
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                hql.append(" WHERE r.roomNumber LIKE :keyword");
+            }
+
+            hql.append(" ORDER BY r.roomNumber ASC");
+
+            TypedQuery<Room> query = em.createQuery(hql.toString(), Room.class);
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                query.setParameter("keyword", keyword + "%");
+            }
+
+            query.setFirstResult((page - 1) * size);
+            query.setMaxResults(size);
+
+            return query.getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+}

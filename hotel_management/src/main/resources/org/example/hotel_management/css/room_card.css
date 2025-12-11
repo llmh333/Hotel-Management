@@ -1,0 +1,48 @@
+@import "theme.css";
+
+#btn-refresh, #btn-add-room{
+    -fx-background-color: -color-green;
+    -fx-font-family: Arial;
+    -fx-font-weight: Bold;
+    -fx-text-fill: white;
+}
+
+#btn-refresh:hover,
+#btn-add-room:hover {
+    -fx-background-color: -color-dark-green;
+}
+
+#btn-refresh:pressed,
+#btn-add-room:pressed {
+    -fx-background-color: -color-green;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.search-box {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 30;
+    -fx-padding: 5 15 5 15;
+}
+
+
+.search-box:hover {
+    -fx-border-color: #1f771c;
+}
+
+.transparent-field {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+    -fx-prompt-text-fill: #95a5a6;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+}
+
+
+.transparent-field:focused {
+    -fx-background-color: transparent;
+}
+

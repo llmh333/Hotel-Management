@@ -1,0 +1,60 @@
+@import "theme.css";
+
+.root {
+    -fx-background-color: #E6E6E7;
+}
+
+#border-pane {
+    -fx-background-radius: 20;
+}
+
+#h-box-menu {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20;
+    -fx-background-radius: 10 10 0 0;
+}
+
+#v-box-menu {
+    -fx-background-color: #F4EEE7;
+    -fx-background-radius: 0 10 10 10;
+}
+
+
+#icon-hotel {
+    -fx-background-color: -color-green;
+}
+
+#btnLogout {
+    -fx-background-color: -color-green;
+    -fx-font-family: Arial;
+    -fx-font-weight: Bold;
+}
+
+#btnLogout:pressed {
+    -fx-background-color: -color-dark-green;
+}
+
+.btn-menu {
+    -fx-background-color: #F4EEE7;
+
+    -fx-pref-width: 200;
+    -fx-pref-height: 40;
+
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+
+    -fx-font-family: Arial;
+    -fx-font-weight: Bold;
+    -fx-font-size: 15;
+}
+
+.btn-menu:hover {
+    -fx-background-color: -color-background-white;
+}
+
+.btn-menu:selected {
+    -fx-border-color: -color-dark-green;
+    -fx-background-color: #E7F0E5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    /*-fx-effect: ;*/
+}

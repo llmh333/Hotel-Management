@@ -1,0 +1,120 @@
+/* =========================================
+   FILE: statistical.css
+   THEME: Green (#1f771c) Dashboard
+   ========================================= */
+
+/* --- 1. LAYOUT & CARDS --- */
+.kpi-card, .chart-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 5);
+    -fx-padding: 20;
+}
+
+/* --- 2. HEADER TEXT --- */
+.header-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+.header-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #95a5a6;
+}
+
+/* --- 3. FILTER BAR --- */
+.filter-bar {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);
+    -fx-padding: 5 15;
+}
+
+.combo-box-flat {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent #dcdcdc transparent transparent; /* Kẻ dọc bên phải */
+    -fx-font-size: 13px;
+}
+
+.btn-filter {
+    -fx-background-color: #1f771c;
+    -fx-background-radius: 50; /* Hình tròn */
+    -fx-cursor: hand;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+}
+.btn-filter:hover { -fx-background-color: #27ae60; }
+
+.btn-export {
+    -fx-background-color: white;
+    -fx-text-fill: #1f771c;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-color: #1f771c;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 8 15;
+}
+.btn-export:hover { -fx-background-color: #f1f8e9; }
+
+/* --- 4. KPI TEXT --- */
+.label-kpi-title { -fx-text-fill: #7f8c8d; -fx-font-weight: bold; -fx-font-size: 14px; }
+.label-kpi-value { -fx-text-fill: #2c3e50; -fx-font-weight: bold; -fx-font-size: 28px; }
+
+.label-kpi-trend-up { -fx-text-fill: #2ecc71; -fx-font-size: 12px; }
+.label-kpi-trend-down { -fx-text-fill: #e74c3c; -fx-font-size: 12px; }
+.label-kpi-trend-neutral { -fx-text-fill: #f39c12; -fx-font-size: 12px; }
+
+.icon-kpi-green { -fx-icon-color: #1f771c; }
+.icon-kpi-blue { -fx-icon-color: #3498db; }
+.icon-kpi-orange { -fx-icon-color: #e67e22; }
+
+/* --- 5. CHART STYLING (FIX LỖI MÀU SẮC) --- */
+
+.chart-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Xóa nền xám của Chart */
+.chart { -fx-padding: 10px; -fx-background: transparent; }
+.chart-content { -fx-padding: 10px; }
+.chart-plot-background { -fx-background-color: transparent; }
+
+/* --- BAR CHART --- */
+/* Cột màu xanh chủ đạo */
+.default-color0.chart-bar {
+    -fx-bar-fill: #1f771c;
+    -fx-background-radius: 5 5 0 0; /* Bo tròn đầu cột */
+    -fx-background-insets: 0;
+}
+.default-color0.chart-bar:hover {
+    -fx-bar-fill: #2ecc71;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 2);
+}
+
+/* Nếu có nhiều chuỗi dữ liệu (Series) thì định nghĩa thêm color1, color2... */
+
+/* --- PIE CHART --- */
+/* Miếng bánh 1 (Room) - Màu Xanh */
+.default-color0.chart-pie {
+    -fx-pie-color: #1f771c;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+}
+/* Miếng bánh 2 (Service) - Màu Cam */
+.default-color1.chart-pie {
+    -fx-pie-color: #f39c12;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+}
+
+/* Legend (Chú thích dưới biểu đồ) */
+.chart-legend { -fx-background-color: transparent; }
+.chart-legend-item-symbol { -fx-background-radius: 50%; } /* Chấm tròn */
+
+/* Trục tọa độ */
+.axis { -fx-tick-label-fill: #7f8c8d; -fx-font-size: 11px; }
+.axis:top { -fx-border-color: transparent; }
+.axis:right { -fx-border-color: transparent; }
