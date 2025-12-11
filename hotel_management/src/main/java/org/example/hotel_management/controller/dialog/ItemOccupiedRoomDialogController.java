@@ -17,23 +17,19 @@ public class ItemOccupiedRoomDialogController {
     public void setData(RoomResponseDTO room) {
         this.currentRoom = room;
         lblRoomNumber.setText(room.getRoomNumber());
-        // Giả sử DTO có trường customerName, nếu null thì hiện "Unknown"
     }
 
-    // Hàm đổi màu thẻ khi được chọn (Được gọi từ Controller cha)
     public void setSelected(boolean isSelected) {
         if (isSelected) {
             if (!rootPane.getStyleClass().contains("room-mini-card-selected")) {
                 rootPane.getStyleClass().add("room-mini-card-selected");
-                // Đổi màu chữ sang trắng cho nổi bật trên nền xanh
                 lblRoomNumber.setStyle("-fx-text-fill: white;");
                 lblCustomerName.setStyle("-fx-text-fill: #e0e0e0;");
                 iconBed.setIconColor(javafx.scene.paint.Color.WHITE);
             }
         } else {
             rootPane.getStyleClass().remove("room-mini-card-selected");
-            // Trả về màu cũ
-            lblRoomNumber.setStyle(""); // Reset về CSS mặc định
+            lblRoomNumber.setStyle("");
             lblCustomerName.setStyle("");
             iconBed.setIconColor(javafx.scene.paint.Color.valueOf("#1f771c"));
         }

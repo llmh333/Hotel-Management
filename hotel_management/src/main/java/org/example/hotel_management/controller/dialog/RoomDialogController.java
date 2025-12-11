@@ -33,32 +33,27 @@ public class RoomDialogController {
     private Consumer<RoomResponseDTO> onSuccessCallback;
 
     public void initialize() {
-        // 1. Load dữ liệu vào ComboBox
         comboType.setItems(FXCollections.observableArrayList(RoomType.values()));
         comboStatus.setItems(FXCollections.observableArrayList(RoomStatus.values()));
 
-        // 2. Validate Price (Chỉ nhập số)
         txtPrice.textProperty().addListener((obs, oldVal, newVal) -> {
             if (!newVal.matches("\\d*(\\.\\d{0,2})?")) {
                 txtPrice.setText(oldVal);
             }
         });
 
-        // 3. Sự kiện nút
         btnCancel.setOnAction(e -> closeDialog());
         btnSave.setOnAction(e -> handleSave());
         btnDelete.setOnAction(e -> handleDelete());
     }
 
-    // --- HÀM SET DATA ---
     public void setRoomData(RoomResponseDTO room) {
         this.currentRoom = room;
 
         if (room != null) {
-            // Chế độ UPDATE
             lblHeaderTitle.setText("Edit Room: " + room.getRoomNumber());
             txtRoomNumber.setText(room.getRoomNumber());
-            txtPrice.setText(String.valueOf(room.getPricePerHours())); // Hoặc PricePerNight tùy logic
+            txtPrice.setText(String.valueOf(room.getPricePerHours()));
             comboType.setValue(room.getRoomType());
             comboStatus.setValue(room.getStatus());
 
@@ -77,9 +72,7 @@ public class RoomDialogController {
         this.onSuccessCallback = callback;
     }
 
-    // --- XỬ LÝ LƯU ---
     private void handleSave() {
-        // Validate cơ bản
         if (txtPrice.getText().isEmpty() || comboType.getValue() == null) {
             AlertUtil.showAlert(Alert.AlertType.ERROR,"Validation", "Please fill all fields.", null);
             return;
@@ -114,7 +107,6 @@ public class RoomDialogController {
         );
     }
 
-    // --- XỬ LÝ XÓA ---
     private void handleDelete() {
         if (AlertUtil.showConfirmation("Confirm Delete", "Are you sure you want to delete this room?",null)) {
             TaskUtil.run(
@@ -123,7 +115,6 @@ public class RoomDialogController {
                     (success) -> {
                         if (success) {
                             AlertUtil.showAlert(Alert.AlertType.INFORMATION, "Deleted", "Room deleted.", null);
-                            // Gọi callback với null để báo hiệu đã xóa -> Parent nên reload list
                             if (onSuccessCallback != null) onSuccessCallback.accept(null);
                             closeDialog();
                         } else {
